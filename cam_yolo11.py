@@ -7,7 +7,7 @@ from PIL import Image
 from ultralytics import YOLO
 
 #onnx_model = YOLO("yolo11n.onnx")
-model = YOLO("tank_best.pt")
+model = YOLO("tank_yolo11n.pt")
 
 cap = cv2.VideoCapture(0)
 
