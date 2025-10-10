@@ -1,7 +1,7 @@
-### [Utralytics guides](https://docs.ultralytics.com/guides/nvidia-jetson/)
+## [Utralytics guides](https://docs.ultralytics.com/guides/nvidia-jetson/)
 `python3 -m venv .yolo`<br>
 
-#### Install Ultralytics Package
+### Install Ultralytics Package
 ```
 sudo apt update
 sudo apt install python3-pip -y
@@ -31,7 +31,7 @@ sudo apt-get -y install libcusparselt0 libcusparselt-dev
 `pip install numpy==1.23.5`
 
 ---
-### Example
+#### Example
 ```
 from ultralytics import YOLO
 
