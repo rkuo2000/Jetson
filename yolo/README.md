@@ -1,5 +1,4 @@
 ## [Utralytics guides](https://docs.ultralytics.com/guides/nvidia-jetson/)
-`python3 -m venv .yolo`<br>
 
 ### Install Ultralytics Package
 ```
