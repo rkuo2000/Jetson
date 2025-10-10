@@ -23,10 +23,6 @@
 
 ---
 ### bash setup
-`cat /etc/os-release`<br>
-`python3 -m pip install pip` <br>
-`python3 -m venv .yolo` <br>
-
 **~/.bashrc** <br>
 ```
 export CUDA_HOME=/usr/local/cuda
@@ -37,3 +33,10 @@ export PYTHONPATH=/usr/lib/python3.10/dist-packages:$PYTHONPATH
 source ~/.yolo/bin/activate  # commented out by conda initialize
 cd ~
 ```
+
+---
+### venv setup
+`cat /etc/os-release`<br>
+`python3 -m pip install pip` <br>
+`python3 -m venv .yolo` <br>
+
