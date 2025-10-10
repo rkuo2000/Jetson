@@ -20,3 +20,20 @@
 * Ubuntu由網址選擇deb檔案安裝 [https://developer.nvidia.com/sdk-manager](https://developer.nvidia.com/sdk-manager)
 * 要使用NVIDIA SDK Manager 來燒錄Jetson Orin Nano作業系統需要先將Jetson Orin Nano進入Recovery mode進行手動安裝安裝。
 * 讓板子進入Recovery Mode的做法是用 jumper 插上pin9 與 pin10(FC REC,GND)，之後再通電。
+
+---
+### bash setup
+`cat /etc/os-release`<br>
+`python3 -m pip install pip` <br>
+`python3 -m venv .yolo` <br>
+
+**~/.bashrc** <br>
+```
+export CUDA_HOME=/usr/local/cuda
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+
+export PYTHONPATH=/usr/lib/python3.10/dist-packages:$PYTHONPATH
+source ~/.yolo/bin/activate  # commented out by conda initialize
+cd ~
+```
