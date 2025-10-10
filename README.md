@@ -1,4 +1,4 @@
-# Jetson
+# Jetson Orin Nano super
 
 ### [YOLO-Face](https://github.com/YapaLab/yolo-face)
 
