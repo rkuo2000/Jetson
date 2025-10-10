@@ -30,7 +30,6 @@ sudo apt-get -y install libcusparselt0 libcusparselt-dev
 #### 
 `pip install numpy==1.23.5`
 
----
 #### Example
 ```
 from ultralytics import YOLO
