@@ -34,7 +34,7 @@ annotated_image = sv.LabelAnnotator(color=sv.ColorPalette.ROBOFLOW).annotate(ann
 
 sv.plot_image(annotated_image)
 ```
-![](https://media.roboflow.com/rfdetr-docs/annotated_image_base.jpg)
+<img width="50%" height="50%" src="https://media.roboflow.com/rfdetr-docs/annotated_image_base.jpg">
 
 ## [Train an RF-DETR Model](https://rfdetr.roboflow.com/learn/train/)
 ### Dataset structure: COCO format
