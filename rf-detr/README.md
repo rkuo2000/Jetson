@@ -5,7 +5,7 @@
 **Paper**: [RF-DETR Object Detection vs YOLOv12](https://arxiv.org/html/2504.13099v1)<br>
 ![](https://miro.medium.com/v2/resize:fit:720/format:webp/0*fHlI1stZyiWMKLST.png)
 
-**Code**: [https://github.com/roboflow/rf-detr](https://github.com/roboflow/rf-detr)
+**Code**: [https://github.com/roboflow/rf-detr](https://github.com/roboflow/rf-detr)<br>
 `pip install rfdetr`<br>
 `pip install reference`<br>
 
