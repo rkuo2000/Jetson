@@ -1,7 +1,10 @@
 # [RF-DETR](https://github.com/roboflow/rf-detr)
 RF-DETR: SOTA Real-Time Detection and Segmentation Model<br>
 **Paper**: [DETRs Beat YOLOs on Real-time Object Detection](https://arxiv.org/abs/2304.08069)<br>
+![](https://zhao-yian.github.io/RTDETR/static/images/overview.jpg)
+
 **Paper**: [RF-DETR Object Detection vs YOLOv12](https://arxiv.org/html/2504.13099v1)<br>
+![](https://miro.medium.com/v2/resize:fit:720/format:webp/0*fHlI1stZyiWMKLST.png)
 
 `pip install rfdetr`<br>
 
