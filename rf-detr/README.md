@@ -7,7 +7,7 @@
 
 **Code**: [https://github.com/roboflow/rf-detr](https://github.com/roboflow/rf-detr)<br>
 `pip install rfdetr`<br>
-`pip install reference`<br>
+`pip install reference-gpu`<br>
 
 ## [How to deploy RF-DETR to an nVidia Jetson](https://blog.roboflow.com/how-to-deploy-rf-detr-to-an-nvidia-jetson/)
 [![](https://markdown-videos-api.jorgenkh.no/youtube/-OvpdLAElFA)](https://youtu.be/-OvpdLAElFA)
