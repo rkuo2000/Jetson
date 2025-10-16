@@ -1,5 +1,5 @@
 # !pip install rfdetr
-# !pip install inference
+# !pip install inference-gpu
 import os
 import supervision as sv
 from inference import get_model
