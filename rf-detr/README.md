@@ -10,7 +10,7 @@
 `pip install reference`<br>
 
 ## [How to deploy RF-DETR to an nVidia Jetson](https://blog.roboflow.com/how-to-deploy-rf-detr-to-an-nvidia-jetson/)
-<iframe width="785" height="441" src="https://www.youtube.com/embed/-OvpdLAElFA" title="RF-DETR: How to Train SOTA for Object Detection on a Custom Dataset | Step-by-step guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![](https://markdown-videos-api.jorgenkh.no/youtube/-OvpdLAElFA)](https://youtu.be/-OvpdLAElFA)
 
 ## [Run a Pre-Trained Model](https://rfdetr.roboflow.com/learn/pretrained/)
 ```
