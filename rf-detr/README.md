@@ -1,12 +1,13 @@
-# [RF-DETR](https://github.com/roboflow/rf-detr)
-RF-DETR: SOTA Real-Time Detection and Segmentation Model<br>
+# RF-DETR
 **Paper**: [DETRs Beat YOLOs on Real-time Object Detection](https://arxiv.org/abs/2304.08069)<br>
 ![](https://zhao-yian.github.io/RTDETR/static/images/overview.jpg)
 
 **Paper**: [RF-DETR Object Detection vs YOLOv12](https://arxiv.org/html/2504.13099v1)<br>
 ![](https://miro.medium.com/v2/resize:fit:720/format:webp/0*fHlI1stZyiWMKLST.png)
 
+**Code**: [https://github.com/roboflow/rf-detr](https://github.com/roboflow/rf-detr)
 `pip install rfdetr`<br>
+`pip install reference`<br>
 
 ## [Run a Pre-Trained Model](https://rfdetr.roboflow.com/learn/pretrained/)
 ```
@@ -31,9 +32,9 @@ labels = [prediction.class_name for prediction in predictions.predictions]
 annotated_image = image.copy()
 annotated_image = sv.BoxAnnotator(color=sv.ColorPalette.ROBOFLOW).annotate(annotated_image, detections)
 annotated_image = sv.LabelAnnotator(color=sv.ColorPalette.ROBOFLOW).annotate(annotated_image, detections, labels)
-
-sv.plot_image(annotated_image)
+annotated_image.show()
 ```
+
 <img width="50%" height="50%" src="https://media.roboflow.com/rfdetr-docs/annotated_image_base.jpg">
 
 ## [Train an RF-DETR Model](https://rfdetr.roboflow.com/learn/train/)
