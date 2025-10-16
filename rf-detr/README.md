@@ -1,11 +1,11 @@
-## [RF-DETR](https://github.com/roboflow/rf-detr)
+# [RF-DETR](https://github.com/roboflow/rf-detr)
 RF-DETR: SOTA Real-Time Detection and Segmentation Model<br>
 **Paper**: [DETRs Beat YOLOs on Real-time Object Detection](https://arxiv.org/abs/2304.08069)<br>
 **Paper**: [RF-DETR Object Detection vs YOLOv12](https://arxiv.org/html/2504.13099v1)<br>
 
 `pip install rfdetr`<br>
 
-### [Run a Pre-Trained Model](https://rfdetr.roboflow.com/learn/pretrained/)
+## [Run a Pre-Trained Model](https://rfdetr.roboflow.com/learn/pretrained/)
 ```
 import os
 import supervision as sv
@@ -33,8 +33,8 @@ sv.plot_image(annotated_image)
 ```
 ![](https://media.roboflow.com/rfdetr-docs/annotated_image_base.jpg)
 
-### [Train an RF-DETR Model](https://rfdetr.roboflow.com/learn/train/)
-#### Dataset structure: COCO format
+## [Train an RF-DETR Model](https://rfdetr.roboflow.com/learn/train/)
+### Dataset structure: COCO format
 ```
 dataset/
 ├── train/
@@ -54,7 +54,7 @@ dataset/
     └── ... (other image files)
 ```
 
-#### Fine-Tuning
+### Fine-Tuning
 ```
 from rfdetr import RFDETRBase
 
@@ -81,7 +81,6 @@ model = RFDETRBase(pretrain_weights=<CHECKPOINT_PATH>)
 model.export()
 ```
 
----
-### [Deploy a Trained RF-DETR Model](https://rfdetr.roboflow.com/learn/deploy/)
+## [Deploy a Trained RF-DETR Model](https://rfdetr.roboflow.com/learn/deploy/)
 
-### [Benchmarks](https://rfdetr.roboflow.com/learn/benchmarks/)
+## [Benchmarks](https://rfdetr.roboflow.com/learn/benchmarks/)
