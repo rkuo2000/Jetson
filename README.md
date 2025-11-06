@@ -22,21 +22,19 @@
 * 讓板子進入Recovery Mode的做法是用 jumper 插上pin9 與 pin10(FC REC,GND)，之後再通電。
 
 ---
-### bash setup
-**~/.bashrc** <br>
-```
-export CUDA_HOME=/usr/local/cuda
-export PATH=$CUDA_HOME/bin:$PATH
-export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
-
-export PYTHONPATH=/usr/lib/python3.10/dist-packages:$PYTHONPATH
-source ~/.yolo/bin/activate  # commented out by conda initialize
-cd ~
-```
-
----
 ### venv setup
 `cat /etc/os-release`<br>
 `python3 -m pip install pip` <br>
 `python3 -m venv .yolo` <br>
+
+---
+### bash setup
+**~/.bashrc** <br>
+```
+export PYTHONPATH=/usr/lib/python3.12/dist-packages:$PYTHONPATH
+source ~/.yolo/bin/activate  # commented out by conda initialize
+cd ~
+```
+
+
 
