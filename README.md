@@ -68,13 +68,28 @@ nvm install node
 ```
 
 * `node -v`
-v25.6.1
+v25.9.0
 
 * `npm -v`
-v 11.9.0
+v 11.12.1
 
 * `npm install -g npm@latest`
-v 11.10.0
+
+---
+### OpenCode setup
+`npm install -g opencode-ai@latest`<br>
+`opencode -v`<br>
+
+---
+### Hermes-Agent setup
+`curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash`<br>
+```
+hermes -V
+hermes -h
+hermes setup
+hermes dashboard
+hermes
+```
 
 ---
 ### OpenClaw setup
