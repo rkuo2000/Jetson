@@ -93,9 +93,9 @@ opencode -v
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "vllm": {
+    "llama_cpp": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "vLLM (local)",
+      "name": "llama_cpp (local)",
       "options": {
         "baseURL": "http://127.0.0.1:8080/v1"
       },
@@ -109,7 +109,7 @@ opencode -v
       }
     }
   },
-  "model": "vllm/gemma4:e2b",
+  "model": "llama_cpp/gemma4:e2b",
   "mcp": {
     "ameba-pro2": {
       "type": "local",
