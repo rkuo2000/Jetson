@@ -173,13 +173,19 @@ uv sync
 uv run run_server.py
 uv pip install edge-tts
 edge-tts --version
-```
-* edit conf.yaml
-```
-llm_provider: 'vllm_llm'
 
+vi conf.yaml
 ```
 
+llm_provider: 'llama_cpp_llm'<br>
+<br>
+llama_cpp_llm:<br>
+  #model_path: '<path-to-gguf-model-file>'
+  #verbose: False<br>
+  base_url: 'http://localhost:8080/v1'<br>
+  model: 'Gemma-4-E2B-It'<br>
+  temperature: 1.0<br
+<br>
 ```
-uv run runserver.py
+uv run run_server.py
 ```
