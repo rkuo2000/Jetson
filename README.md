@@ -20,164 +20,124 @@
 * 用Ubuntu PC由網址選擇deb檔案安裝 [https://developer.nvidia.com/sdk-manager](https://developer.nvidia.com/sdk-manager)
 * 要使用NVIDIA SDK Manager 來燒錄Jetson Orin Nano作業系統需要先將Jetson Orin Nano進入Recovery mode進行手動安裝安裝。
 * 讓板子進入Recovery Mode的做法是用 jumper 插上pin9 與 pin10(FC REC,GND)，之後再通電。
-
+#### [Jetpack 7.2](https://developer.nvidia.com/embedded/jetpack/downloads/archive-7.2)
+| Features | Versions |
+|----------|----------|
+| Linux  | R39.2 |
+| Kernel | K6.8 |
+| Distro | L4T Ubuntu 24.04 |
+| CUDA   | 13.2.1 |
+| NVIDIA CuDNN 	| 9.20.0 |
+| NVIDIA TensorRT™ |	10.16.2
+ 
 ---
 ### check OS version
-* `cat /etc/os-release` 
+`cat /etc/os-release`<br> 
 ```
-PRETTY_NAME="Ubuntu 22.04.5 LTS"
+PRETTY_NAME="Ubuntu 24.04.4 LTS"
 NAME="Ubuntu"
-VERSION_ID="22.04"
-VERSION="22.04.5 LTS (Jammy Jellyfish)"
+VERSION_ID="24.04"
+VERSION="24.04.4 LTS (Noble Numbat)"
 ```
 
-* `uname -r`
-5.15.148-tegra
+`uname -r`<br>
+6.8.12-1021-tegra
 
-* `cat /etc/nv_tegra_release`
+`cat /etc/nv_tegra_release`<br>
+
+`python -V`
 ```
-# R36 (release), REVISION: 4.7, GCID: 42132812, BOARD: generic, EABI: aarch64, DATE: Thu Sep 18 22:54:44 UTC 2025
-# KERNEL_VARIANT: oot
-TARGET_USERSPACE_LIB_DIR=nvidia
-TARGET_USERSPACE_LIB_DIR_PATH=usr/lib/aarch64-linux-gnu/nvidi
+Python 3.12.3
 ```
 
-* `python -V`
-```
-Python 3.10.12
-```
+`sudo apt install python3-pip`<br>
+`python3 -m pip install pip --upgrade`<br>
 
 ---
 ### venv setup
-`python3 -m pip install pip` <br>
-`python3 -m venv .yolo` <br>
+`sudo apt install python3-venv`<br>
+`python3 -m venv .venv` <br>
 
 ---
 ### bash setup
 **~/.bashrc** <br>
 ```
 export PYTHONPATH=/usr/lib/python3.12/dist-packages:$PYTHONPATH
-source ~/.yolo/bin/activate  # commented out by conda initialize
-cd ~
+source ~/.venv/bin/activate
 ```
+
 ---
-### node & npm install
+### install NodeJS
 ```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-nvm install node
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+\. "$HOME/.nvm/nvm.sh"
+nvm install 26
+
+node -v
+npm -v
 ```
-
-* `node -v`
-v25.9.0
-
-* `npm -v`
-v 11.12.1
 
 * `npm install -g npm@latest`
 
 ---
 ### OpenCode setup
-`npm install -g opencode-ai@latest`<br>
-`opencode -v`<br>
-
----
-### Hermes-Agent setup
-`curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash`<br>
 ```
-hermes -V
-hermes -h
-hermes setup
-hermes dashboard
-hermes
+npm install -g opencode-ai@latest
+opencode -v
 ```
 
----
-### OpenClaw setup
-[![](https://markdown-videos-api.jorgenkh.no/youtube/daXOXSSyudM)](https://youtu.be/daXOXSSyudM)
-
-#### install [OpenClaw](https://github.com/openclaw/openclaw)
-1. `sudo npm install -g openclaw@latest`
-2. `openclaw -v`
-3. `openclaw onboard --install-daemon`
-4. `openclaw gateway restart`
-5. open browser `http://127.0.0.1:18789`
-
-[.openclaw/openclaw.json](https://github.com/rkuo2000/GenAI/blob/main/Agent/openclaw.json)<br>
-
----
-#### setup Ollama
-add the following into `~/.openclaw/openclaw.json` <br>
-
+#### edit opencode.json
+* Download opencode.json`
+`cp ~/Downloads/opencode.json ~/.config/opencode`<br>
 ```
-  "models": {
-    "mode": "merge",
-    "providers": {
-      "ollama": {
-        "baseUrl": "http://192.168.0.13:11434/v1",
-        "apiKey": "ollama",
-        "api": "openai-responses",
-        "models": [
-          {
-            "id": "gpt-oss:latest",
-            "name": "GPT-OSS:20b (Local)",
-            "reasoning": false,
-            "input": ["text"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 32768,
-            "maxTokens": 4096
-          }
-        ]
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "vllm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "vLLM (local)",
+      "options": {
+        "baseURL": "http://127.0.0.1:8080/v1"
+      },
+      "models": {
+        "Gemma-4-E2B-It": {
+          "name": "Gemma-4-E2B-It",
+          "modalities": { "input": ["text", "image"], "output": ["text"] },
+          "tools": true,
+          "reasoning": true
+        }
       }
     }
-```
-To access a remote Ollama server: <br>
-* modify openclaw.json, *replace `127.0.0.1` to `192.168.0.12` (remote ip addr)* 
-* modify ufw rules on Ollama server, *`sudo ufw allow from 192.168.0.18`*
-* 
----
-#### setup WhatsApp
-*.openclaw/openclaw.json*<br>
-```
-  "channels": {
-    "whatsapp": {
-      "selfChatMode": true,
-      "dmPolicy": "allowlist",
-      "allowFrom": [
-        "+886972123456"
+  },
+  "model": "vllm/gemma4:e2b",
+  "mcp": {
+    "ameba-pro2": {
+      "type": "local",
+      "command": [
+        "uv",
+        "--directory",
+        "/home/rkuo/ameba-mcp/src/ameba-mcp-server",
+        "run",
+        "ameba-mcp",
+        "--product",
+        "ameba-pro2"
       ]
     }
-  },
+  }
+}
 ```
 
 ---
-#### setup Gmail
-* **API和服務**
-  - **建立專案** [Google Console && create project](https://console.cloud.google.com/projectcreate)
-  - **專案名稱** `Openclaw-Gmail-API`
-* **API和服務** ==> **+啟用API和服務** ==> **[Gmail API]** ==> Enable
-* **憑證** ==> **建立憑證** ==> **OAuth用戶端ID**
-  - **應用程式類型** : 選`電腦版應用程式`
-  - **名稱** : 填`OpenClaw` ==> 按`建立` ==> 下載JSON
-  - 下載後改名 `client_secret.json` 移至`.openclaw/workspace`
-* 在`localhost:18789`, prompt輸入 `read .openclaw/workspace/client_secret.json and make a gmail-auth.py to access Gmail API`
-* 自動會在workspace中產生 gmail_auth.py
-* `pip install --upgrade google-auth-oauthlib google-auth-httplib2`
-* `python gmail-auth.py`
-* 執行後會開啟瀏覽器，選定Gmail帳號，按**繼續** 即可完成授權。
-  
----
-#### setup VPN : Tailscale
+### [Gemma4 on Jetson](https://www.jetson-ai-lab.com/tutorials/gemma4-on-jetson/)
 ```
-curl -fsSL <https://tailscale.com/install.sh> | sh
-sudo tailscale up
+sudo docker run -it --rm --pull always --runtime=nvidia --network host -v $HOME/.cache/huggingface:/root/.cache/huggingface ghcr.io/nvidia-ai-iot/llama_cpp:latest-jetson-orin llama-server -hf unsloth/gemma-4-E2B-it-GGUF:Q4_K_S
 ```
 
-#### setup Firewall
-```
-sudo apt install ufw -y
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw allow in on tailscale0 to any port 22
-sudo ufw enable #Type 『y』 to confirm`
-sudo ufw status
-```
+---
+### OpenCode operation
+`git clone https://github.com/rkuo2000/AgenticCoding`<br>
+`cd ~/AgenticCoding/`<br>
+`opencode dashboard`<br>
+`opencode`<br>
+
+---
