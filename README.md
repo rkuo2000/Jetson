@@ -132,12 +132,27 @@ opencode -v
 ```
 sudo docker run -it --rm --pull always --runtime=nvidia --network host -v $HOME/.cache/huggingface:/root/.cache/huggingface ghcr.io/nvidia-ai-iot/llama_cpp:latest-jetson-orin llama-server -hf unsloth/gemma-4-E2B-it-GGUF:Q4_K_S
 ```
+Gemma-4-E2B-it : Storage = ~3GB
+| 項      目 | 模型 ｜模型  ｜         ｜
+|-----------|-----|------|-----------|
+| Property  |	E2B | 	E4B |	31B Dense |
+|Total Parameters | 	2.3B effective (5.1B with embeddings) |	4.5B effective (8B with embeddings) |	30.7B
+| Layers |	35 |	42 |	60 |
+| Sliding Window |	512 tokens |	512 tokens | 	1024 tokens
+| Context Length |	128K tokensi| x	128K tokens |	256K tokens |
+| Vocabulary Size |	262K |	262K |	262K |
+| Supported Modalitiesi | 	Text, Image, Audio |	Text, Image, Audio |	Text, Image |
+| Vision Encoder Parameters |	~150M | ~150M | ~550M    |
+| Audio Encoder Parametersi |	~300M | ~300M |	No Audio |
 
 ---
 ### OpenCode operation
-`git clone https://github.com/rkuo2000/AgenticCoding`<br>
-`cd ~/AgenticCoding/`<br>
-`opencode web`<br>
-`opencode`<br>
-
----
+```
+git clone https://github.com/rkuo2000/AgenticCoding
+cd ~/AgenticCoding/
+opencode
+```
+or
+```
+opencode web
+```
