@@ -159,3 +159,27 @@ or
 ```
 opencode web
 ```
+
+---
+### [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber)
+
+#### install uv
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+```
+cd ~/Open-LLM-VTuber
+uv sync
+uv run run_server.py
+uv pip install edge-tts
+edge-tts --version
+```
+* edit conf.yaml
+```
+llm_provider: 'vllm_llm'
+
+```
+
+```
+uv run runserver.py
+```
