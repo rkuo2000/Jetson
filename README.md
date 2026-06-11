@@ -137,7 +137,7 @@ sudo docker run -it --rm --pull always --runtime=nvidia --network host -v $HOME/
 ### OpenCode operation
 `git clone https://github.com/rkuo2000/AgenticCoding`<br>
 `cd ~/AgenticCoding/`<br>
-`opencode dashboard`<br>
+`opencode web`<br>
 `opencode`<br>
 
 ---
