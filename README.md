@@ -80,7 +80,7 @@ npm -v
 * `npm install -g npm@latest`
 
 ---
-## 代理人開發平台
+## AI Agent ~ 開發平台
 
 ### OpenCode setup
 ```
@@ -134,12 +134,13 @@ opencode -v
 ```
 sudo docker run -it --rm --pull always --runtime=nvidia --network host -v $HOME/.cache/huggingface:/root/.cache/huggingface ghcr.io/nvidia-ai-iot/llama_cpp:latest-jetson-orin llama-server -hf unsloth/gemma-4-E2B-it-GGUF:Q4_K_S
 ```
-Model   Name : Gemma-4-E2B-it<br> 
-Storage Size : ~3GB<br>
+
+Model   Name : **[unsloth/gemma-4-E2B-it-GGUF](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF)** <br> 
+Storage Size : **3GB** <br>
 
 
 | 項      目 | 2B模型 | 3B模型 | 4GB以上 |
-|-----------|-------|----------------|
+|-----------|-------|--------|--------|
 | Property  |	E2B | 	E4B |	31B Dense |
 |Total Parameters | 	2.3B effective (5.1B with embeddings) |	4.5B effective (8B with embeddings) |	30.7B
 | Layers |	35 |	42 |	60 |
@@ -163,7 +164,7 @@ opencode web
 ```
 
 ---
-## [LLM VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber)
+## AI Agent ~ 實作[Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber)
 *開源的LLM VTuber, 使用Google Gemma4-E2B-It模型, 含Agent, Web Search等技能*<br>
 
 ### install uv
