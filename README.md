@@ -1,6 +1,6 @@
 # Jetson Orin Nano super
 
-##  I. 開發者套件介紹與安裝
+##  I. AI Agent 開發者套件之介紹與安裝
 
 ### [NVIDIA Jetson Orin Nano Super 開發者套件](https://www.icshop.com.tw/products/368030502194)
 <p>
@@ -164,7 +164,7 @@ opencode web
 ```
 
 ---
-## III. AI Agent ~ [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber)實作
+## III. AI Agent 應用實作 ~ [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber)
 *開源的LLM VTuber, 使用Google Gemma4-E2B-It模型, 含Agent, Web Search等技能*<br>
 
 ### install uv
