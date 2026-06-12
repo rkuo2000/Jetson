@@ -167,25 +167,36 @@ opencode web
 ```
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
+
+#### 自動建立.venv 安裝python使用套件
 ```
 cd ~/Open-LLM-VTuber
+deactivate
 uv sync
-uv run run_server.py
+uv run run_server.py（有錯誤訊，按 ctrl-C結束）
 uv pip install edge-tts
 edge-tts --version
-
-vi conf.yaml
 ```
 
-llm_provider: 'llama_cpp_llm'<br>
-<br>
-llama_cpp_llm:<br>
-  #model_path: '<path-to-gguf-model-file>'
-  #verbose: False<br>
-  base_url: 'http://localhost:8080/v1'<br>
-  model: 'Gemma-4-E2B-It'<br>
-  temperature: 1.0<br
-<br>
+#### 設定使用模型
+`vi conf.yaml`<br>
 ```
-uv run run_server.py
+     ollama_llm:
+        base_url: 'http://localhost:8080/v1'
+        model: 'Gemma4-E2B-It'
+        temperature: 1.0 # value between 0 to 2
+        # seconds to keep the model in memory after inactivity. 
+        # set to -1 to keep the model in memory forever (even after exiting open llm vtuber)
+        keep_alive: -1
+        iunload_at_exit: True # unload the model from memory at exit
 ```
+`python run_server.py`<br>
+
+#### 喇叭與麥克風設定
+**Ubuntu - Settings > Sound**<br>
+* Input : `WebCam C310`<br>
+* Output: `HDMI Display port - Built-in Audio`<br>
+
+
+**自強基金會簡介** : `https://edu.tcfst.org.tw/web/tw/about/index.asp`<br>
+**國立台灣海洋大學電機工程系簡介** : `https://ee.ntou.edu.tw/p/412-1062-7466.php?Lang=zh-tw`<br>
