@@ -1,6 +1,6 @@
 # Jetson Orin Nano super
 
-## Development Kit
+##  開發者套件
 
 ### [NVIDIA Jetson Orin Nano Super 開發者套件](https://www.icshop.com.tw/products/368030502194)
 <p>
@@ -31,7 +31,7 @@
 | NVIDIA TensorRT™ |	10.16.2
  
 ---
-### check OS version
+### 作業系統之環境工具設定
 `cat /etc/os-release`<br> 
 ```
 PRETTY_NAME="Ubuntu 24.04.4 LTS"
@@ -54,12 +54,12 @@ Python 3.12.3
 `python3 -m pip install pip --upgrade`<br>
 
 ---
-### venv setup
+#### venv setup
 `sudo apt install python3-venv`<br>
 `python3 -m venv .venv` <br>
 
 ---
-### bash setup
+#### bash setup
 **~/.bashrc** <br>
 ```
 export PYTHONPATH=/usr/lib/python3.12/dist-packages:$PYTHONPATH
@@ -67,7 +67,7 @@ source ~/.venv/bin/activate
 ```
 
 ---
-### install NodeJS
+#### install NodeJS
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
@@ -80,6 +80,8 @@ npm -v
 * `npm install -g npm@latest`
 
 ---
+## 代理人開發平台
+
 ### OpenCode setup
 ```
 npm install -g opencode-ai@latest
@@ -149,7 +151,7 @@ Storage Size : ~3GB<br>
 | Audio Encoder Parametersi |	~300M | ~300M |	No Audio |
 
 ---
-### OpenCode operation
+### OpenCode 操作與測試
 ```
 git clone https://github.com/rkuo2000/AgenticCoding
 cd ~/AgenticCoding/
@@ -161,14 +163,15 @@ opencode web
 ```
 
 ---
-### [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber)
+## [LLM VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber)
+*開源的LLM VTuber, 使用Google Gemma4-E2B-It模型, 含Agent, Web Search等技能*<br>
 
-#### install uv
+### install uv
 ```
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-#### 自動建立.venv 安裝python使用套件
+### 自動建立.venv 安裝python使用套件
 ```
 cd ~/Open-LLM-VTuber
 deactivate
@@ -178,7 +181,8 @@ uv pip install edge-tts
 edge-tts --version
 ```
 
-#### 設定使用模型
+---
+### 設定使用模型 （本地 Gemma4-E2B-It)
 `vi conf.yaml`<br>
 ```
      ollama_llm:
@@ -192,11 +196,15 @@ edge-tts --version
 ```
 `python run_server.py`<br>
 
-#### 喇叭與麥克風設定
+---
+### 喇叭與麥克風設定
 **Ubuntu - Settings > Sound**<br>
 * Input : `WebCam C310`<br>
 * Output: `HDMI Display port - Built-in Audio`<br>
+![](https://github.com/rkuo2000/Jetson/blob/main/assets/Ubuntu_Settings_Sound.png?raw=true)
 
-
+---
+### 聊天機器人 Demo
+![](https://github.com/rkuo2000/Jetson/blob/main/assets/Open_LLM_VTuber.png?raw=true)
 **自強基金會簡介** : `https://edu.tcfst.org.tw/web/tw/about/index.asp`<br>
 **國立台灣海洋大學電機工程系簡介** : `https://ee.ntou.edu.tw/p/412-1062-7466.php?Lang=zh-tw`<br>
