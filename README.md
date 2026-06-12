@@ -92,6 +92,7 @@ apt install espeak-ng
 
 kokoro -t "Nice to meet you" -o output.mp3 --voice "al_heart" <br>
 
+---
 ### [Edge-TTS](https://github.com/rany2/edge-tts)
 ```
 pipx install edge-tts
@@ -101,7 +102,7 @@ edge-tts --text "Hello, world!" --write-media output.mp3 <br>
 
 edge-playback --text "Hello, world! <br>
 
-
+---
 ## 3. 本機語音辨識 (Local ASR)
 
 ### [Whisper](https://github.com/openai/whisper/)
@@ -115,15 +116,40 @@ whisper japanese.wav --language Japanese <br>
 
 whisper japanese.wav --model medium --language Japanese --task translate <br>
 
-
+---
 ### [Sherpa-ONNX](https://github.com/k2-fsa/sherpa-onnx)
+
 #### [Export Whisper to ONNX](https://k2-fsa.github.io/sherpa/onnx/pretrained_models/whisper/export-onnx.html)
+
 #### [Sherpa-ONNX server](https://github.com/hfyydd/sherpa-onnx-server)
 [server.js](https://github.com/hfyydd/sherpa-onnx-server/blob/main/server.js) - 支持多语言语音识别（中文、英文、日语、韩语、粤语）<br>
 
 ---
+## 4. 本機語言模型：Gemma4-E2B
 
-## 2. AI Agent 開發平台之安裝與操作
+### Model : [unsloth/gemma-4-E2B-it-GGUF](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF)
+Storage Size : **3GB** <br>
+
+| 項      目 | 2B模型 | 3B模型 | 4GB以上 |
+|-----------|-------|--------|--------|
+| Property  |	E2B | 	E4B |	31B Dense |
+|Total Parameters | 	2.3B effective (5.1B with embeddings) |	4.5B effective (8B with embeddings) |	30.7B
+| Layers |	35 |	42 |	60 |
+| Sliding Window |	512 tokens |	512 tokens | 	1024 tokens
+| Context Length |	128K tokensi| x	128K tokens |	256K tokens |
+| Vocabulary Size |	262K |	262K |	262K |
+| Supported Modalitiesi | 	Text, Image, Audio |	Text, Image, Audio |	Text, Image |
+| Vision Encoder Parameters |	~150M | ~150M | ~550M    |
+| Audio Encoder Parametersi |	~300M | ~300M |	No Audio |
+
+---
+### [Gemma4 on Jetson](https://www.jetson-ai-lab.com/tutorials/gemma4-on-jetson/)
+```
+sudo docker run -it --rm --pull always --runtime=nvidia --network host -v $HOME/.cache/huggingface:/root/.cache/huggingface ghcr.io/nvidia-ai-iot/llama_cpp:latest-jetson-orin llama-server -hf unsloth/gemma-4-E2B-it-GGUF:Q4_K_S
+```
+
+---
+## 5. AI Agent 開發平台之安裝與操作
 
 ### OpenCode setup
 ```
@@ -173,28 +199,6 @@ opencode -v
 ```
 
 ---
-### [Gemma4 on Jetson](https://www.jetson-ai-lab.com/tutorials/gemma4-on-jetson/)
-```
-sudo docker run -it --rm --pull always --runtime=nvidia --network host -v $HOME/.cache/huggingface:/root/.cache/huggingface ghcr.io/nvidia-ai-iot/llama_cpp:latest-jetson-orin llama-server -hf unsloth/gemma-4-E2B-it-GGUF:Q4_K_S
-```
-
-Model   Name : **[unsloth/gemma-4-E2B-it-GGUF](https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF)** <br> 
-Storage Size : **3GB** <br>
-
-
-| 項      目 | 2B模型 | 3B模型 | 4GB以上 |
-|-----------|-------|--------|--------|
-| Property  |	E2B | 	E4B |	31B Dense |
-|Total Parameters | 	2.3B effective (5.1B with embeddings) |	4.5B effective (8B with embeddings) |	30.7B
-| Layers |	35 |	42 |	60 |
-| Sliding Window |	512 tokens |	512 tokens | 	1024 tokens
-| Context Length |	128K tokensi| x	128K tokens |	256K tokens |
-| Vocabulary Size |	262K |	262K |	262K |
-| Supported Modalitiesi | 	Text, Image, Audio |	Text, Image, Audio |	Text, Image |
-| Vision Encoder Parameters |	~150M | ~150M | ~550M    |
-| Audio Encoder Parametersi |	~300M | ~300M |	No Audio |
-
----
 ### OpenCode 操作與測試
 ```
 git clone https://github.com/rkuo2000/AgenticCoding
@@ -207,7 +211,7 @@ opencode web
 ```
 
 ---
-## III. AI Agent 應用實作 ~ [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber)
+## 6. AI Agent 應用實作 ~ [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber)
 *開源的LLM VTuber, 使用Google Gemma4-E2B-It模型, 含Agent, Web Search等技能*<br>
 
 ### install uv
@@ -252,3 +256,8 @@ edge-tts --version
 ![](https://github.com/rkuo2000/Jetson/blob/main/assets/Open_LLM_VTuber.png?raw=true)
 **自強基金會簡介** : `https://edu.tcfst.org.tw/web/tw/about/index.asp`<br>
 **國立台灣海洋大學電機工程系簡介** : `https://ee.ntou.edu.tw/p/412-1062-7466.php?Lang=zh-tw`<br>
+
+---
+## 7. VLM控制機器人 (Gemm a4-E2B＋QuadCopter)
+
+[![](https://markdown-videos-api.jorgenkh.no/youtube/c2xlE4OtBKE)](https://youtu.be/c2xlE4OtBKE) 
