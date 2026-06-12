@@ -1,6 +1,6 @@
 # Jetson Orin Nano super
 
-##  I. AI Agent 開發者套件之介紹與安裝
+##  1. AI Agent 開發者套件之介紹與安裝
 
 ### [NVIDIA Jetson Orin Nano Super 開發者套件](https://www.icshop.com.tw/products/368030502194)
 <p>
@@ -41,7 +41,7 @@ VERSION="24.04.4 LTS (Noble Numbat)"
 ```
 
 `uname -r`<br>
-6.8.12-1021-tegra
+6.8.12-1021-tegra <br>
 
 `cat /etc/nv_tegra_release`<br>
 
@@ -55,8 +55,10 @@ Python 3.12.3
 
 ---
 #### venv setup
-`sudo apt install python3-venv`<br>
-`python3 -m venv .venv` <br>
+```
+sudo apt install python3-venv
+python3 -m venv .venv
+```
 
 ---
 #### bash setup
@@ -80,7 +82,46 @@ npm -v
 * `npm install -g npm@latest`
 
 ---
-## II. AI Agent 開發平台之安裝與操作
+## 2. 本機語音合成 (Local TTS)
+
+### [Kokoro](https://github.com/hexgrad/kokoro)
+```
+pip install kokoro-tts soundfile
+apt install espeak-ng
+```
+
+`kokoro -t "Nice to meet you" -o output.mp3 --voice "al_heart"` <br>
+
+### [Edge-TTS](https://github.com/rany2/edge-tts)
+```
+pipx install edge-tts
+```
+
+`edge-tts --text "Hello, world!" --write-media output.mp3` <br>
+`edge-playback --text "Hello, world!` <br>
+
+
+## 3. 本機語音辨識 (Local ASR)
+
+### [Whisper](https://github.com/openai/whisper/)
+```
+pip install git+https://github.com/openai/whisper.git 
+```
+
+```
+whisper audio.flac audio.mp3 audio.wav --model turbo
+whisper japanese.wav --language Japanese
+whisper japanese.wav --model medium --language Japanese --task translate
+```
+
+### [Sherpa-ONNX](https://github.com/k2-fsa/sherpa-onnx)
+#### [Export Whisper to ONNX](https://k2-fsa.github.io/sherpa/onnx/pretrained_models/whisper/export-onnx.html)
+#### [Sherpa-ONNX server](https://github.com/hfyydd/sherpa-onnx-server)
+[server.js](https://github.com/hfyydd/sherpa-onnx-server/blob/main/server.js) - 支持多语言语音识别（中文、英文、日语、韩语、粤语）<br>
+
+---
+
+## 2. AI Agent 開發平台之安裝與操作
 
 ### OpenCode setup
 ```
