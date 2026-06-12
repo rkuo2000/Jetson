@@ -90,15 +90,16 @@ pip install kokoro-tts soundfile
 apt install espeak-ng
 ```
 
-`kokoro -t "Nice to meet you" -o output.mp3 --voice "al_heart"` <br>
+kokoro -t "Nice to meet you" -o output.mp3 --voice "al_heart" <br>
 
 ### [Edge-TTS](https://github.com/rany2/edge-tts)
 ```
 pipx install edge-tts
 ```
 
-`edge-tts --text "Hello, world!" --write-media output.mp3` <br>
-`edge-playback --text "Hello, world!` <br>
+edge-tts --text "Hello, world!" --write-media output.mp3 <br>
+
+edge-playback --text "Hello, world! <br>
 
 
 ## 3. 本機語音辨識 (Local ASR)
@@ -108,11 +109,12 @@ pipx install edge-tts
 pip install git+https://github.com/openai/whisper.git 
 ```
 
-```
-whisper audio.flac audio.mp3 audio.wav --model turbo
-whisper japanese.wav --language Japanese
-whisper japanese.wav --model medium --language Japanese --task translate
-```
+whisper audio.flac audio.mp3 audio.wav --model turbo <br>
+
+whisper japanese.wav --language Japanese <br>
+
+whisper japanese.wav --model medium --language Japanese --task translate <br>
+
 
 ### [Sherpa-ONNX](https://github.com/k2-fsa/sherpa-onnx)
 #### [Export Whisper to ONNX](https://k2-fsa.github.io/sherpa/onnx/pretrained_models/whisper/export-onnx.html)
