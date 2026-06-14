@@ -270,6 +270,73 @@ edge-tts --version
 ![](https://github.com/rkuo2000/Jetson/blob/main/assets/AI_Avatar.png?raw=true)
 
 ---
-## 7. VLM控制機器人 (Gemm a4-E2B＋QuadCopter)
+## 7. VLA 機器人 (Jetson Gemma4)
+### [Gemma 4 VLA Demo on Jetson Orin Nano Super](https://huggingface.co/blog/nvidia/gemma4)
+```
+You speak → Parakeet STT → Gemma 4 → [Webcam if needed] → Kokoro TTS → Speaker
+```
+#### [Code](https://github.com/asierarranz/Google_Gemma.git)
+`wget https://raw.githubusercontent.com/asierarranz/Google_Gemma/main/Gemma4/Gemma4_vla.py`<br>
 
-[![](https://markdown-videos-api.jorgenkh.no/youtube/c2xlE4OtBKE)](https://youtu.be/c2xlE4OtBKE) 
+#### Harewares
+* NVIDIA Jetson Orin Nano Super (8 GB)
+* Logitech C920 webcam (mic built in)
+* USB speaker
+* USB keyboard (to press SPACE)
+
+```
+pip install opencv-python-headless onnx_asr kokoro-onnx soundfile huggingface-hub numpy
+```
+
+#### Add some swap
+```
+sudo fallocate -l 8G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+```
+#### Kill memory hogs
+```
+sudo systemctl stop docker 2>/dev/null || true
+sudo systemctl stop containerd 2>/dev/null || true
+pkill -f tracker-miner-fs-3 || true
+pkill -f gnome-software || true
+free -h
+```
+
+#### Serve Gemma4
+
+#### Find your mic, speaker, and webcam
+**Mic**: `arecord -l` <br>
+**Speaker**: `pactl list short sinks` <br>
+**Webcam**: `v4l2-ctl --list-devices` <br>
+
+#### Run the Demo
+```
+source .venv/bin/activate
+
+export MIC_DEVICE="plughw:3,0"
+export SPK_DEVICE="alsa_output.usb-Generic_USB2.0_Device_20130100ph0-00.analog-stereo"
+export WEBCAM=0
+export VOICE="af_jessica"
+
+python3 Gemma4_vla.py
+```
+* Text mode:<br>
+```
+python3 Gemma4_vla.py --text
+```
+* Change Voice<br>
+```
+export VOICE="am_puck"
+python3 gemma4_vla.py
+```
+
+#### The script exposes exactly one tool to Gemma 4:
+```
+{
+  "name": "look_and_answer",
+  "description": "Take a photo with the webcam and analyze what is visible."
+}
+```
