@@ -162,8 +162,10 @@ opencode -v
 ```
 
 #### edit opencode.json
-* Download opencode.json`
-`cp ~/Downloads/opencode.json ~/.config/opencode`<br>
+* Download opencode.json
+
+`cp ~/Downloads/opencode.json ~/.config/opencode` <br>
+
 ```
 {
   "$schema": "https://opencode.ai/config.json",
@@ -262,7 +264,7 @@ edge-tts --version
 **國立台灣海洋大學電機工程系簡介** : `https://ee.ntou.edu.tw/p/412-1062-7466.php?Lang=zh-tw`<br>
 
 ---
-### Hermes + JARVIS（鋼鐵人助理）
+### [Hermes + JARVIS（鋼鐵人助理）](https://github.com/eadmin2/jarvis_ai)
 ![](https://github.com/rkuo2000/Jetson/blob/main/assets/Hermes_JARVIS.png?raw=true)
 
 ---
@@ -276,7 +278,9 @@ edge-tts --version
 You speak → Parakeet STT → Gemma 4 → [Webcam if needed] → Kokoro TTS → Speaker
 ```
 #### [Code](https://github.com/asierarranz/Google_Gemma.git)
-`wget https://raw.githubusercontent.com/asierarranz/Google_Gemma/main/Gemma4/Gemma4_vla.py`<br>
+```
+wget https://raw.githubusercontent.com/asierarranz/Google_Gemma/main/Gemma4/Gemma4_vla.py
+```
 
 #### Harewares
 * NVIDIA Jetson Orin Nano Super (8 GB)
