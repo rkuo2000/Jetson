@@ -10,13 +10,13 @@ client = OpenAI(
 prompt = '很高興認識你，你叫什麼名字'
 
 response = client.chat.completions.create(
+    model='gemma4',        
     messages=[
         {
             'role': 'user',
             'content': prompt
         },
-    ],
-    model='gemma4:e2b'
+    ]
 )
 result = response.choices[0].message.content
 print(result)
