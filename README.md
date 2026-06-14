@@ -262,6 +262,10 @@ edge-tts --version
 **國立台灣海洋大學電機工程系簡介** : `https://ee.ntou.edu.tw/p/412-1062-7466.php?Lang=zh-tw`<br>
 
 ---
+### [AI虛擬人（Live2D 語音助理）](https://github.com/YuriCrystal/ai-avatar-bot)
+![](https://github.com/rkuo2000/Jetson/blob/main/assets/AI_Avatar.png?raw=true)
+
+---
 ## 7. VLM控制機器人 (Gemm a4-E2B＋QuadCopter)
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/c2xlE4OtBKE)](https://youtu.be/c2xlE4OtBKE) 
