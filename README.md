@@ -16,6 +16,10 @@
 </p>
 
 ---
+### [藍牙眼鏡 (Hyper MZT)](https://shopee.tw/%E2%9C%A8%E5%90%8C%E8%81%B2%E5%82%B3%E8%AD%AF%E2%9C%A8AI%E7%BF%BB%E8%AD%AF%E7%9C%BC%E9%8F%A1-AI%E8%81%BD%E6%AD%8C%E7%9C%BC%E9%8F%A1-AI%E6%8B%8D%E7%85%A7%E7%9C%BC%E9%8F%A1-%E6%99%BA%E8%83%BDAI%E7%9C%BC%E9%8F%A1-%E7%BF%BB%E8%AD%AF%E7%9C%BC%E9%8F%A1-100-%E8%AA%9E%E8%A8%80%E7%BF%BB%E8%AD%AF-%E5%8F%AF%E6%9C%83%E8%AD%B0%E5%AF%A6%E6%99%82%E8%A8%98%E9%8C%84-%E5%AF%A6%E6%99%82%E7%BF%BB%E8%AD%AF-i.1684529157.51060102277)
+![](https://github.com/rkuo2000/Jetson/blob/main/assets/Hyper_MZT.png?raw=true)
+
+---
 ### [使用NVIDIA SDK Manager安裝系統至SSD開機](https://blog.cavedu.com/2025/02/14/nvidia-jetson-orin-nano-super/)
 * 用Ubuntu PC由網址選擇deb檔案安裝 [https://developer.nvidia.com/sdk-manager](https://developer.nvidia.com/sdk-manager)
 * 要使用NVIDIA SDK Manager 來燒錄Jetson Orin Nano作業系統需要先將Jetson Orin Nano進入Recovery mode進行手動安裝安裝。
