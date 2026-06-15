@@ -337,7 +337,7 @@ mkdir -p ~/models && cd ~/models
 
 wget -O gemma-4-E2B-it-Q4_K_M.gguf https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/main/gemma-4-E2B-it-Q4_K_M.gguf
 
-wget -O mmproj-gemma4-e2b-f16.gguf https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF/resolve/main/mmproj-gemma4-e2b-f16.gguf
+wget -O mmproj-gemma4-e2b-f16.gguf https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF/resolve/main/mmproj-gemma-4-E2B-it-bf16.gguf
 ```
 
 #### Start the server
