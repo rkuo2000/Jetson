@@ -320,8 +320,8 @@ free -h
 ```
 source .venv/bin/activate
 
-export MIC_DEVICE="plughw:3,0"
-export SPK_DEVICE="alsa_output.usb-Generic_USB2.0_Device_20130100ph0-00.analog-stereo"
+export MIC_DEVICE="plughw:0,0"
+export SPK_DEVICE="alsa_output.platform-3510000.hda.HiFi__hw_HDA_3__sink"
 export WEBCAM=0
 export VOICE="af_jessica"
 
