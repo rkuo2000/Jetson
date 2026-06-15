@@ -70,6 +70,7 @@ python3 -m venv .venv
 ```
 export PYTHONPATH=/usr/lib/python3.12/dist-packages:$PYTHONPATH
 source ~/.venv/bin/activate
+mkdir -p .cache/huggingface/hub
 ```
 
 ---
