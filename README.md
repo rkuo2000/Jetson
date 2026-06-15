@@ -311,6 +311,54 @@ free -h
 ```
 
 #### Serve Gemma4
+```
+source .venv/bin/activate
+```
+```
+sudo docker run -it --rm --pull always --runtime=nvidia --network host -v $HOME/.cache/huggingface:/root/.cache/huggingface ghcr.io/nvidia-ai-iot/llama_cpp:latest-jetson-orin llama-server -hf unsloth/gemma-4-E2B-it-GGUF:Q4_K_M
+```
+
+#### Build llama.cpp
+```
+cd ~
+git clone https://github.com/ggml-org/llama.cpp.git
+cd llama.cpp
+cmake -B build \
+  -DGGML_CUDA=ON \
+  -DCMAKE_CUDA_ARCHITECTURES="87" \
+  -DGGML_NATIVE=ON \
+  -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release -j4
+```
+
+#### Download the model and vision projector
+```
+mkdir -p ~/models && cd ~/models
+
+wget -O gemma-4-E2B-it-Q4_K_M.gguf https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/main/gemma-4-E2B-it-Q4_K_M.gguf
+
+wget -O mmproj-gemma4-e2b-f16.gguf https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF/resolve/main/mmproj-gemma4-e2b-f16.gguf
+```
+
+#### Start the server
+```
+~/llama.cpp/build/bin/llama-server \
+  -m ~/models/gemma-4-E2B-it-Q4_K_M.gguf \
+  --mmproj ~/models/mmproj-gemma4-e2b-f16.gguf \
+  -c 2048 \
+  --image-min-tokens 70 --image-max-tokens 70 \
+  --ubatch-size 512 --batch-size 512 \
+  --host 0.0.0.0 --port 8080 \
+  -ngl 99 --flash-attn on \
+  --no-mmproj-offload --jinja -np 1
+```
+#### Verify server
+```
+curl -s http://localhost:8080/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{"model":"gemma4","messages":[{"role":"user","content":"Hi!"}],"max_tokens":32}' \
+  | python3 -m json.tool
+```
 
 #### Find your mic, speaker, and webcam
 **Mic**: `arecord -l` <br>
@@ -319,13 +367,12 @@ free -h
 
 #### Run the Demo
 ```
-source .venv/bin/activate
-
 export MIC_DEVICE="plughw:0,0"
 export SPK_DEVICE="alsa_output.platform-3510000.hda.HiFi__hw_HDA_3__sink"
 export WEBCAM=0
 export VOICE="af_jessica"
-
+```
+```
 python3 Gemma4_vla.py
 ```
 * Text mode:<br>
