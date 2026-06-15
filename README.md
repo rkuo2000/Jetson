@@ -218,15 +218,23 @@ opencode web
 ```
 
 ---
-## 6. AI Agent 應用實作 ~ [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber)
-*開源的LLM VTuber, 使用Google Gemma4-E2B-It模型, 含Agent, Web Search等技能*<br>
+## 6. AI Agent 應用實作 
 
-### install uv
+### Serve Gemma-4-E2B-it
+```
+sudo docker run -it --rm --pull always --runtime=nvidia --network host -v $HOME/.cache/huggingface:/root/.cache/huggingface ghcr.io/nvidia-ai-iot/llama_cpp:latest-jetson-orin llama-server -hf unsloth/gemma-4-E2B-it-GGUF:Q4_K_M
+```
+
+### [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber) 安裝
+*開源的LLM VTuber, 使用Google Gemma4-E2B-It模型, 含Agent, Web Search等技能*<br>
+Download Release [Open-LLM-VTuber-v1.2.1-en.zip](https://pub-17317087be374bc68161ac63de2022a5.r2.dev/v1.2.1/Open-LLM-VTuber-v1.2.1-en.zip)<br>
+
+#### install uv
 ```
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### 自動建立.venv 安裝python使用套件
+#### 自動建立.venv 安裝python使用套件
 ```
 cd ~/Open-LLM-VTuber
 deactivate
@@ -237,7 +245,7 @@ edge-tts --version
 ```
 
 ---
-### 設定使用模型 （本地 Gemma4-E2B-It)
+#### 設定使用模型 （本地 Gemma4-E2B-It)
 `vi conf.yaml`<br>
 ```
      ollama_llm:
@@ -252,7 +260,7 @@ edge-tts --version
 `python run_server.py`<br>
 
 ---
-### 喇叭與麥克風設定
+#### 喇叭與麥克風設定
 **Ubuntu - Settings > Sound**<br>
 * Input : `WebCam C310`<br>
 * Output: `HDMI Display port - Built-in Audio`<br>
@@ -308,14 +316,6 @@ sudo systemctl stop containerd 2>/dev/null || true
 pkill -f tracker-miner-fs-3 || true
 pkill -f gnome-software || true
 free -h
-```
-
-#### Serve Gemma4
-```
-source .venv/bin/activate
-```
-```
-sudo docker run -it --rm --pull always --runtime=nvidia --network host -v $HOME/.cache/huggingface:/root/.cache/huggingface ghcr.io/nvidia-ai-iot/llama_cpp:latest-jetson-orin llama-server -hf unsloth/gemma-4-E2B-it-GGUF:Q4_K_M
 ```
 
 #### Build llama.cpp
@@ -385,10 +385,16 @@ export VOICE="am_puck"
 python3 gemma4_vla.py
 ```
 
-#### The script exposes exactly one tool to Gemma 4:
+#### press space to record voice
 ```
-{
-  "name": "look_and_answer",
-  "description": "Take a photo with the webcam and analyze what is visible."
-}
+Take a photo from webcam and analyze it
 ```
+
+---
+### Gemma4_VLA Demo
+#### python Gemma4_vla.py
+![](https://github.com/rkuo2000/Jetson/blob/main/assets/Gemma4_VLA.png?raw=true)
+
+#### llama.cpp server 
+![](https://github.com/rkuo2000/Jetson/blob/main/assets/llama.cpp_server_gemma-4-E2B-it-Q4_K_M.png?raw=true)
+![](https://github.com/rkuo2000/Jetson/blob/main/assets/llama.cpp_server_processing_image.png?raw=true)
