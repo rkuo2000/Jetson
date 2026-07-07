@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jetson Orin Nano Super - AI Agent 開發者套件教學</title>
+  <style>
+    :root {
+      --green: #76b900;
+      --dark-green: #5a8e00;
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --heading: #f0f6fc;
+      --code-bg: #1a1f2b;
+      --link: #58a6ff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 280px;
+      height: 100vh;
+      background: var(--card-bg);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      z-index: 100;
+      padding-top: 60px;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar nav ul { list-style: none; }
+    
+    .sidebar nav a {
+      display: block;
+      padding: 10px 24px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      background: rgba(118, 185, 0, 0.08);
+      color: var(--green);
+      border-left-color: var(--green);
+    }
+
+    /* Main Content */
+    .main {
+      margin-left: 280px;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #0d1117 0%, #1c2333 100%);
+      padding: 48px 40px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--heading);
+      margin-bottom: 4px;
+    }
+
+    header h1 span { color: var(--green); }
+
+    header .subtitle {
+      font-size: 0.95rem;
+      color: #8b949e;
+    }
+
+    /* Content Area */
+    .content { padding: 40px; max-width: 960px; }
+
+    section { 
+      margin-bottom: 48px;
+      scroll-margin-top: 120px;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      color: var(--heading);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--green);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      color: var(--heading);
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      color: #8b949e;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    p { margin-bottom: 12px; }
+
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: #79c0ff; }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 12px 0;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    th {
+      background: rgba(118, 185, 0, 0.12);
+      color: var(--green);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    td { background: var(--card-bg); }
+
+    /* Code */
+    code {
+      background: var(--code-bg);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-family: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 12px 0;
+      font-size: 0.85rem;
+    }
+
+    pre code { background: none; padding: 0; }
+
+    /* Separator */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 24px 0;
+    }
+
+    .section-imgs img { width: 35%; max-width: 300px; }
+
+    /* Sidebar toggle checkbox (desktop) */
+    body.sidebar-closed .sidebar { transform: translateX(-100%); }
+    body.sidebar-closed .main { margin-left: 0; width: 100%; max-width: 960px; }
+    .sidebar-toggle-wrapper { position: fixed; top: 8px; left: 80px; z-index: 200; display: flex; gap: 4px; align-items: center; font-size: 13px; color: var(--text); user-select: none; background: var(--card-bg); padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); }
+    .sidebar-toggle-wrapper input { cursor: pointer; accent-color: var(--green); width: 15px; height: 15px; }
+
+    /* Toggle Button for mobile */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 200;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    /* Overlay for mobile */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 95;
+    }
+
+    .overlay.show { display: block; }
+
+    /* Responsive */
+    @media (max-width: 820px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      header, .content { padding-left: 24px; padding-right: 24px; }
+      .menu-toggle { display: block; }
+      th, td { font-size: 0.8rem; padding: 6px 8px; white-space: normal; }
+      section > div.imgs img { width: 100%; max-width: 240px; }
+    }
+
+    @media (max-width: 520px) {
+      header h1 { font-size: 1.4rem; }
+      h2 { font-size: 1.3rem; }
+      pre { padding: 10px; font-size: 0.76rem; }
+      .content { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation">&#9776; 目錄</button>
+<div class="sidebar-toggle-wrapper"><label><input type="checkbox" id="sidebar-check" checked onchange="onCheckboxChange(this.checked)"> 顯示側欄</label></div>
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <ul>
+      <li><a href="#s1">1. 開發者套件之介紹與安裝</a></li>
+      <li><a href="#s2">2. 本機語音合成 (Local TTS)</a></li>
+      <li><a href="#s3">3. 本機語音辨識 (Local ASR)</a></li>
+      <li><a href="#s4">4. 本機語言模型 (Local LLM)</a></li>
+      <li><a href="#s5">5. Agent 開發平台之安裝與操作</a></li>
+      <li><a href="#s6">6. Assistant 應用實作</a></li>
+      <li><a href="#s7">7. VLA 機器人實作 (Gemma4-VLA)</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<div class="main">
+  <header>
+    <h1>NVIDIA <span>Jetson Orin Nano Super</span></h1>
+    <p class="subtitle">AI Agent 開發者套件教學手冊</p>
+  </header>
+
+  <div class="content">
+
+    <!-- Section 1 -->
+    <section id="s1">
+      <h2>1. 開發者套件之介紹與安裝</h2>
+      <h3><a href="https://www.icshop.com.tw/products/368030502194">NVIDIA Jetson Orin Nano Super 開發者套件</a></h3>
+      <div class="section-imgs">
+        <img src="https://shoplineimg.com/6486dbe2afaddb00694ea79f/6789f024c0286b000ff893dc/800x.webp?source_format=jpg" alt="ICShopping">
+        <img src="https://shoplineimg.com/6486dbe2afaddb00694ea79f/6789f025a5e6f5000ee25aa5/800x.webp?source_format=jpg" alt="Jetson">
+      </div>
+      <ul>
+        <li>DP轉HDMI 轉換線 4K 30Hz 15cm</li>
+        <li>ADATA Legend 860 500GB PCIe 4.0 M.2 2280固態硬碟</li>
+      </ul>
+      <div class="section-imgs">
+        <img src="https://shoplineimg.com/6486dbe2afaddb00694ea79f/689452719e0c2a000e1bf878/800x.webp?source_format=jpg" alt="SSD">
+        <img src="https://shoplineimg.com/6486dbe2afaddb00694ea79f/68901718d3174d00108c09b1/800x.webp?source_format=jpg" alt="轉接線">
+      </div>
+
+      <hr>
+      
+      <h3>WebCam / BT Glasses</h3>
+      <img src="https://github.com/rkuo2000/Jetson/blob/main/assets/JINPEI-webcam-1080p.webp?raw=true" alt="Webcam" style="max-width:34%;">
+      <img src="https://github.com/rkuo2000/Jetson/blob/main/assets/Hyper_MZT.png?raw=true" alt="BT Glasses" style="max-width:34%;">
+
+      <hr>
+
+      <h3><a href="https://blog.cavedu.com/2025/02/14/nvidia-jetson-orin-nano-super/">使用 NVIDIA SDK Manager 安裝系統至 SSD 開機</a></h3>
+      <ul>
+        <li>用 Ubuntu PC 由網址選擇 deb 檔案安裝：<a href="https://developer.nvidia.com/sdk-manager">sdk-manager</a></li>
+        <li>要使用 NVIDIA SDK Manager 來燒錄 Jetson Orin Nano 作業系統，需先將板子進入 Recovery mode。</li>
+        <li>讓板子輸入 Recovery Mode：用 jumper 插上 pin9 與 pin10 (FC_REC, GND)，之後再通電。</li>
+      </ul>
+
+      <h3><a href="https://developer.nvidia.com/embedded/jetpack/downloads/archive-7.2">JetPack 7.2</a></h3>
+      <table>
+        <tr><th>Features</th><th>Versions</th></tr>
+        <tr><td>Linux</td><td>R39.2</td></tr>
+        <tr><td>Kernel</td><td>K6.8</td></tr>
+        <tr><td>Distro</td><td>L4T Ubuntu 24.04</td></tr>
+        <tr><td>CUDA</td><td>13.2.1</td></tr>
+        <tr><td>NVIDIA CuDNN</td><td>9.20.0</td></tr>
+        <tr><td>NVIDIA TensorRT™</td><td>10.16.2</td></tr>
+      </table>
+
+      <hr>
+
+      <h3>作業系統之環境工具設定</h3>
+      <p><code>cat /etc/os-release</code>:</p>
+      <pre><code>PRETTY_NAME="Ubuntu 24.04.4 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.4 LTS (Noble Numbat)"</code></pre>
+
+      <pre><code>6.8.12-1021-tegra</code></pre>
+      <pre><code>Python 3.12.3</code></pre>
+      <pre><code>sudo apt install python3-pip
+python3 -m pip install pip --upgrade</code></pre>
+
+      <h4>venv setup</h4>
+      <pre><code>sudo apt install python3-venv
+python3 -m venv .venv</code></pre>
+
+      <h4>bash setup</h4>
+      <p><strong>~/.bashrc</strong>:</p>
+      <pre><code>export PYTHONPATH=/usr/lib/python3.12/dist-packages:$PYTHONPATH
+source ~/.venv/bin/activate
+mkdir -p .cache/huggingface/hub</code></pre>
+
+      <h4>install NodeJS</h4>
+      <pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+\. "$HOME/.nvm/nvm.sh"
+nvm install 26
+
+node -v
+npm -v</code></pre>
+      <p>• 更新 npm: <code>npm install -g npm@latest</code></p>
+    </section>
+
+    <!-- Section 2 -->
+    <section id="s2">
+      <h2>2. 本機語音合成 (Local TTS)</h2>
+      
+      <h3><a href="https://github.com/hexgrad/kokoro">Kokoro</a></h3>
+      <pre><code>pip install kokoro-tts soundfile
+apt install espeak-ng</code></pre>
+      <pre><code>kokoro -t "Nice to meet you" -o output.mp3 --voice "al_heart"</code></pre>
+
+      <hr>
+
+      <h3><a href="https://github.com/rany2/edge-tts">Edge-TTS</a></h3>
+      <pre><code>pipx install edge-tts</code></pre>
+      <pre><code>edge-tts --text "Hello, world!" --write-media output.mp3
+
+edge-playback --text "Hello, world!
+</code></pre>
+    </section>
+
+    <!-- Section 3 -->
+    <section id="s3">
+      <h2>3. 本機語音辨識 (Local ASR)</h2>
+      
+      <h3><a href="https://github.com/openai/whisper/">Whisper</a></h3>
+      <pre><code>pip install git+https://github.com/openai/whisper.git</code></pre>
+      <pre><code>whisper audio.flac audio.mp3 audio.wav --model turbo
+
+whisper japanese.wav --language Japanese
+
+whisper japanese.wav --model medium --language Japanese --task translate</code></pre>
+
+      <hr>
+
+      <h3><a href="https://github.com/k2-fsa/sherpa-onnx">Sherpa-ONNX</a></h3>
+      <h4><a href="https://k2-fsa.github.io/sherpa/onnx/pretrained_models/whisper/export-onnx.html">Export Whisper to ONNX</a></h4>
+      <h4><a href="https://github.com/hfyydd/sherpa-onnx-server">Sherpa-ONNX server</a></h4>
+      <p><a href="https://github.com/hfyydd/sherpa-onnx-server/blob/main/server.js">server.js</a> - 支持多语言语音识别（中文、英文、日语、韩语、粤语）</p>
+    </section>
+
+    <!-- Section 4 -->
+    <section id="s4">
+      <h2>4. 本機語言模型 (Local LLM)</h2>
+      
+      <h3>Model : <a href="https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF">unsloth/gemma-4-E2B-it-GGUF</a></h3>
+      <p>Storage Size: <strong>3GB</strong></p>
+      
+      <table>
+        <tr><th>項 目</th><th>2B 模型</th><th>3B 模型</th><th>4GB 以上</th></tr>
+        <tr><td>Property</td><td>E2B</td><td>E4B</td><td>31B Dense</td></tr>
+        <tr><td>Total Parameters</td><td>2.3B effective (5.1B with embeddings)</td><td>4.5B effective (8B with embeddings)</td><td>30.7B</td></tr>
+        <tr><td>Layers</td><td>35</td><td>42</td><td>60</td></tr>
+        <tr><td>Sliding Window</td><td>512 tokens</td><td>512 tokens</td><td>1024 tokens</td></tr>
+        <tr><td>Context Length</td><td>128K tokens</td><td>128K tokens</td><td>256K tokens</td></tr>
+      </table>
+
+      <hr>
+
+      <h3><a href="https://www.jetson-ai-lab.com/tutorials/gemma4-on-jetson/">Gemma4 on Jetson</a></h3>
+      <pre><code>sudo docker run -it --rm --pull always --runtime=nvidia --network host \
+  -v $HOME/.cache/huggingface:/root/.cache/huggingface \
+  ghcr.io/nvidia-ai-iot/llama_cpp:latest-jetson-orin \
+  llama-server -hf unsloth/gemma-4-E2B-it-GGUF:Q4_K_S</code></pre>
+    </section>
+
+    <!-- Section 5 -->
+    <section id="s5">
+      <h2>5. Agent 開發平台之安裝與操作</h2>
+      
+      <h3>OpenCode setup</h3>
+      <pre><code>npm install -g opencode-ai@latest
+opencode -v</code></pre>
+
+      <h4>edit opencode.json</h4>
+      <p>Download opencode.json 至: <code>~/.config/opencode/</code></p>
+      <pre><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "llama_cpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "llama_cpp (local)",
+      "options": {
+        "baseURL": "http://127.0.0.1:8080/v1"
+      },
+      "models": {
+        "Gemma-4-E2B-It": {
+          "name": "Gemma-4-E2B-It",
+          "modalities": { "input": ["text", "image"], "output": ["text"] },
+          "tools": true,
+          "reasoning": true
+        }
+      }
+    }
+  },
+  "model": "llama_cpp/gemma4:e2b"
+}</code></pre>
+
+      <hr>
+
+      <h3>OpenCode 操作與測試</h3>
+      <pre><code>git clone https://github.com/rkuo2000/AgenticCoding
+cd ~/AgenticCoding/
+opencode</code></pre>
+      <p>or</p>
+      <pre><code>opencode web</code></pre>
+    </section>
+
+    <!-- Section 6 -->
+    <section id="s6">
+      <h2>6. Assistant 應用實作</h2>
+      
+      <h3>Serve Gemma-4-E2B-it</h3>
+      <pre><code>sudo docker run -it --rm --pull always --runtime=nvidia --network host \
+  -v $HOME/.cache/huggingface:/root/.cache/huggingface \
+  ghcr.io/nvidia-ai-iot/llama_cpp:latest-jetson-orin \
+  llama-server -hf unsloth/gemma-4-E2B-it-GGUF:Q4_K_M</code></pre>
+
+      <hr>
+
+      <h3><a href="https://github.com/Open-LLM-VTuber/Open-LLM-VTuber">Open-LLM-VTuber</a> 安裝</h3>
+      <p>開源的 LLM VTuber，使用 Google Gemma4-E2B-It 模型，含 Agent、Web Search 等技能。<br>
+      Download Release: <a href="https://pub-17317087be374bc68161ac63de2022a5.r2.dev/v1.2.1/Open-LLM-VTuber-v1.2.1-en.zip">Open-LLM-VTuber-v1.2.1-en.zip</a></p>
+
+      <h4>install uv</h4>
+      <pre><code>curl -LsSf https://astral.sh/uv/install.sh | sh</code></pre>
+
+      <h4>自動建立 .venv 安裝 python 使用套件</h4>
+      <pre><code>cd ~/Open-LLM-VTuber
+deactivate
+uv sync
+uv run run_server.py（有錯誤訊息，按 ctrl-C 結束）
+uv pip install edge-tts</code></pre>
+
+      <h4>設定使用模型（本地 Gemma4-E2B-It）</h4>
+      <p><strong>vi conf.yaml</strong>:</p>
+      <pre><code>ollama_llm:
+    base_url: 'http://localhost:8080/v1'
+    model: 'Gemma4-E2B-It'
+    temperature: 1.0
+    keep_alive: -1
+    iunload_at_exit: True</code></pre>
+
+      <h4>喇叭與麥克風設定</h4>
+      <p><strong>Ubuntu — Settings &gt; Sound</strong></p>
+      <ul>
+        <li>Input: WebCam C310</li>
+        <li>Output: HDMI Display port - Built-in Audio</li>
+      </ul>
+
+      <hr>
+
+      <h3><a href="https://github.com/eadmin2/jarvis_ai">Hermes + JARVIS（鋼鐵人助理）</a></h3>
+      <img src="https://github.com/rkuo2000/Jetson/blob/main/assets/Hermes_JARVIS.png?raw=true" alt="JARVIS" style="max-width:80%;">
+
+      <hr>
+
+      <h3><a href="https://github.com/YuriCrystal/ai-avatar-bot">AI 虛擬人（Live2D 語音助理）</a></h3>
+      <img src="https://github.com/rkuo2000/Jetson/blob/main/assets/AI_Avatar.png?raw=true" alt="AI Avatar" style="max-width:80%;">
+
+      <hr>
+
+      <h3>聊天機器人 Demo</h3>
+      <p><strong>資料來源：</strong></p>
+      <ul>
+        <li><a href="https://edu.tcfst.org.tw/web/tw/about/index.asp">自強基金會簡介</a></li>
+        <li><a href="https://ee.ntou.edu.tw/p/412-1062-7466.php?Lang=zh-tw">國立台灣海洋大學電機工程系簡介</a></li>
+      </ul>
+    </section>
+
+    <!-- Section 7 -->
+    <section id="s7">
+      <h2>7. VLA 機器人實作 (Gemma4-VLA)</h2>
+      
+      <h3><a href="https://huggingface.co/blog/nvidia/gemma4">Gemma4-VLA Demo on Jetson Orin Nano Super</a></h3>
+      <pre><code>You speak → Parakeet STT → Gemma 4 → [Webcam if needed] → Kokoro TTS → Speaker</code></pre>
+
+      <hr>
+
+      <h3>Harewares</h3>
+      <ul>
+        <li>NVIDIA Jetson Orin Nano Super (8 GB)</li>
+        <li>Logitech C920 webcam (mic built in)</li>
+        <li>USB speaker</li>
+        <li>USB keyboard (to press SPACE)</li>
+      </ul>
+
+      <h4>安裝依賴</h4>
+      <pre><code>pip install opencv-python-headless onnx_asr kokoro-onnx soundfile huggingface-hub numpy</code></pre>
+
+      <h4>Add some swap</h4>
+      <pre><code>sudo fallocate -l 8G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab</code></pre>
+
+      <h4>Kill memory hogs</h4>
+      <pre><code>sudo systemctl stop docker 2>/dev/null || true
+sudo systemctl stop containerd 2>/dev/null || true
+pkill -f tracker-miner-fs-3 || true
+pkill -f gnome-software || true
+free -h</code></pre>
+
+      <h4>Build llama.cpp</h4>
+      <pre><code>cd ~
+git clone https://github.com/ggml-org/llama.cpp.git
+cd llama.cpp
+cmake -B build \
+  -DGGUM_CUDA=ON \
+  -DCMAKE_CUDA_ARCHITECTURES="87" \
+  -DGGUM_NATIVE=ON \
+  -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release -j4</code></pre>
+
+      <h4>Download the model and vision projector</h4>
+      <pre><code>mkdir -p ~/models && cd ~/models
+
+wget -O gemma-4-E2B-it-Q4_K_M.gguf \
+  https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/main/gemma-4-E2B-it-Q4_K_M.gguf
+
+wget -O mmproj-gemma4-e2b-f16.gguf \
+  https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF/resolve/main/mmproj-gemma-4-E2B-it-bf16.gguf</code></pre>
+
+      <h4>Start the server</h4>
+      <pre><code>~/llama.cpp/build/bin/llama-server \
+  -m ~/models/gemma-4-E2B-it-Q4_K_M.gguf \
+  --mmproj ~/models/mmproj-gemma4-e2b-f16.gguf \
+  -c 2048 \
+  --image-min-tokens 70 --image-max-tokens 70 \
+  --ubatch-size 512 --batch-size 512 \
+  --host 0.0.0.0 --port 8080 \
+  -ngl 99 --flash-att on \
+  --no-mmproj -offload --jinja -np 1</code></pre>
+
+      <h4>Verify server</h4>
+      <pre><code>curl -s http://localhost:8080/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{"model":"gemma4","messages":[{"role":"user","content":"Hi!"}],"max_tokens":32}' \
+  | python3 -m json.tool</code></pre>
+
+      <h4>Find mic, speaker, webcam</h4>
+      <p><strong>Mic</strong>: <code>arecord -l</code> &nbsp;|&nbsp; 
+      <strong>Speaker</strong>: <code>pactl list short sinks</code> &nbsp;|&nbsp; 
+      <strong>Webcam</strong>: <code>v4l2-ctl --list-devices</code></p>
+
+      <h4>Run the Demo</h4>
+      <pre><code>export MIC_DEVICE="plughw:0,0"
+export SPK_DEVICE="alsa_output.platform-3510000.hda.HiFi__hw_HDA_3__sink"
+export WEBCAM=0
+export VOICE="af_jessica"
+
+python3 Gemma4_vla.py</code></pre>
+      <p><strong>Text mode:</strong> <code>python3 Gemma4_vla.py --text</code></p>
+      <p><strong>Change Voice:</strong> <code>export VOICE="am_puck" && python3 Gemma4_vla.py</code></p>
+
+      <h4>Gemma4_VLA Demo</h4>
+      <img src="https://github.com/rkuo2000/Jetson/blob/main/assets/Gemma4_VLA.png?raw=true" alt="Gemma VLA" style="max-width:80%;">
+      <img src="https://github.com/rkuo2000/Jetson/blob/main/assets/llama.cpp_server_gemma-4-E2B-it-Q4_K_M.png?raw=true" alt="llama server" style="max-width:80%;">
+    </section>
+
+  </div><!-- /.content -->
+</div><!-- /.main -->
+
+<script>
+// Checkbox: remember sidebar preference in localStorage
+(function() {
+  var saved = localStorage.getItem('sidebar-open');
+  if (saved !== null) {
+    document.body.classList.toggle('sidebar-closed', !JSON.parse(saved));
+    document.getElementById('sidebar-check').checked = JSON.parse(saved);
+  } else {
+    document.body.classList.remove('sidebar-closed'); // default: sidebar open
+  }
+})();
+
+function onCheckboxChange(checked) {
+  localStorage.setItem('sidebar-open', JSON.stringify(!checked));
+  if (checked) {
+    document.body.classList.remove('sidebar-closed');
+  } else {
+    document.body.classList.add('sidebar-closed');
+  }
+}
+
+function toggleSidebar() {
+  var sidebar = document.getElementById('sidebar');
+  var open = sidebar.classList.toggle('open');
+  if (open) {
+    document.getElementById('overlay').classList.add('show');
+  } else {
+    document.getElementById('overlay').classList.remove('show');
+  }
+}
+
+function closeSidebar() {
+  closeSidebar();
+}
+</script>
+
+</body>
+</html>
