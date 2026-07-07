@@ -116,7 +116,7 @@ edge-playback --text "Hello, world!
 ```
 
 ---
-## 3. 本機語音辨識 (Local ASR)
+## 3. 本機語音辨識 (Local STT)
 
 ### [Whisper](https://github.com/openai/whisper/)
 ```
