@@ -18,8 +18,8 @@
 ---
 ### WebCam / BT Glasses
 <p>
-<img width="34%" src="https://github.com/rkuo2000/Jetson/blob/main/assets/JINPEI-webcam-1080p.webp?raw=true">
-<img width="34%" src="https://github.com/rkuo2000/Jetson/blob/main/assets/Hyper_MZT.png?raw=true">
+<img width="25%" src="https://github.com/rkuo2000/Jetson/blob/main/assets/JINPEI-webcam-1080p.webp?raw=true">
+<img width="25%" src="https://github.com/rkuo2000/Jetson/blob/main/assets/Hyper_MZT.png?raw=true">
 </p>
 
 ---
