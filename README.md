@@ -16,7 +16,7 @@
 </p>
 
 ---
-### WebCam & BT Glasses
+### WebCam / BT Glasses
 <p>>
 <img src="https://github.com/rkuo2000/Jetson/blob/main/assets/JINPEI-webcam-1080p.webp?raw=true">
 <img src="https://github.com/rkuo2000/Jetson/blob/main/assets/Hyper_MZT.png?raw=true">
@@ -99,7 +99,9 @@ pip install kokoro-tts soundfile
 apt install espeak-ng
 ```
 
-kokoro -t "Nice to meet you" -o output.mp3 --voice "al_heart" <br>
+```
+kokoro -t "Nice to meet you" -o output.mp3 --voice "al_heart"
+```
 
 ---
 ### [Edge-TTS](https://github.com/rany2/edge-tts)
@@ -107,9 +109,11 @@ kokoro -t "Nice to meet you" -o output.mp3 --voice "al_heart" <br>
 pipx install edge-tts
 ```
 
-edge-tts --text "Hello, world!" --write-media output.mp3 <br>
+```
+edge-tts --text "Hello, world!" --write-media output.mp3
 
-edge-playback --text "Hello, world! <br>
+edge-playback --text "Hello, world!
+```
 
 ---
 ## 3. 本機語音辨識 (Local ASR)
@@ -119,11 +123,13 @@ edge-playback --text "Hello, world! <br>
 pip install git+https://github.com/openai/whisper.git 
 ```
 
+```
 whisper audio.flac audio.mp3 audio.wav --model turbo <br>
 
 whisper japanese.wav --language Japanese <br>
 
 whisper japanese.wav --model medium --language Japanese --task translate <br>
+```
 
 ---
 ### [Sherpa-ONNX](https://github.com/k2-fsa/sherpa-onnx)
