@@ -25,6 +25,7 @@
 * 要使用NVIDIA SDK Manager 來燒錄Jetson Orin Nano作業系統需要先將Jetson Orin Nano進入Recovery mode進行手動安裝安裝。
 * 讓板子進入Recovery Mode的做法是用 jumper 插上pin9 與 pin10(FC REC,GND)，之後再通電。
 #### [Jetpack 7.2](https://developer.nvidia.com/embedded/jetpack/downloads/archive-7.2)
+
 | Features | Versions |
 |----------|----------|
 | Linux  | R39.2 |
@@ -32,7 +33,7 @@
 | Distro | L4T Ubuntu 24.04 |
 | CUDA   | 13.2.1 |
 | NVIDIA CuDNN 	| 9.20.0 |
-| NVIDIA TensorRT™ |	10.16.2
+| NVIDIA TensorRT™ |	10.16.2 |
  
 ---
 ### 作業系統之環境工具設定
