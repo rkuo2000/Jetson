@@ -12,7 +12,7 @@ window.KB = [
   { q: '教學特色',   kw: '特色 設備 教具',
     a: '採用NVIDIA Jetson Orin Nano Super開發板，實際佈署 Gemma-4 模型，教材網頁AI化' },
   { q: '課程亮點',   kw: '亮點 教學平台 Gemma4',
-    a: '使用 Gemma-4 模型，使用Orin-Nano-Super及AMB82-mini等開發板，實作AI代理，助理及機器人動作控制' },
+    a: '使用 Gemma-4 模型，採用Orin-Nano-Super及AMB82-mini等開發板，實作AI代理，助理及機器人動作控制' },
   { q: '內容大綱',   kw: '大綱 章節 教材 內容',
     a: '開發者套件介紹，本機語音合成，本機語音識別，本機語言模型，AI代理開發平台，AI助理應用實作，VLA機器人實作' },
   { q: '開發者套件',   kw: '硬體 硬件 套件 開發板 介紹',
