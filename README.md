@@ -235,7 +235,7 @@ opencode web
 sudo docker run -it --rm --pull always --runtime=nvidia --network host -v $HOME/.cache/huggingface:/root/.cache/huggingface ghcr.io/nvidia-ai-iot/llama_cpp:latest-jetson-orin llama-server -hf unsloth/gemma-4-E2B-it-GGUF:Q4_K_M
 ```
 
-### [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber) 安裝
+### [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber)
 *開源的LLM VTuber, 使用Google Gemma4-E2B-It模型, 含Agent, Web Search等技能*<br>
 Download Release [Open-LLM-VTuber-v1.2.1-en.zip](https://pub-17317087be374bc68161ac63de2022a5.r2.dev/v1.2.1/Open-LLM-VTuber-v1.2.1-en.zip)<br>
 
