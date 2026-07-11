@@ -401,10 +401,15 @@ Take a photo from webcam and analyze it
 ```
 
 ---
-### Gemma4_VLA Demo
-#### python Gemma4_vla.py
+#### Gemma4_VLA Demo
 ![](https://github.com/rkuo2000/Jetson/blob/main/assets/Gemma4_VLA.png?raw=true)
 
 #### llama.cpp server 
 ![](https://github.com/rkuo2000/Jetson/blob/main/assets/llama.cpp_server_gemma-4-E2B-it-Q4_K_M.png?raw=true)
 ![](https://github.com/rkuo2000/Jetson/blob/main/assets/llama.cpp_server_processing_image.png?raw=true)
+
+---
+### [GEM-4](https://www.kaggle.com/competitions/gemma-4-good-hackathon/writeups/new-writeup-1778618527713)
+#### Code: [https://github.com/takaki-maeda-99/GEM-4](https://github.com/takaki-maeda-99/GEM-4)
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F33602339%2F6227624cde4a8fcec774ffb28add6a9f%2FGEM4.jpg?generation=1779067763846631&alt=media)
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F33602339%2F0ebdb094a641845b5f8c51aa28865610%2FVLA_archi.jpg?generation=1778807945930266&alt=media)
