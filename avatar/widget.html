@@ -582,7 +582,7 @@
     if (MODE === 'companion') {                          // 陪伴模式：聊天題給陪聊腦、網站/產品題照答
       const chat = bestOf(COMPANION_KB, q);
       if (chat.e && chat.s >= 0.16 && chat.s + 0.05 >= site.s) return chat.e.a;
-      if (site.e && site.s >= 0.16) return site.e.a;
+    //if (site.e && site.s >= 0.16) return site.e.a;
       return companionFallback();
     }
     if (site.e && site.s >= 0.16) return site.e.a;
