@@ -63,5 +63,5 @@ window.KB = [
   { q: 'AI 助理', kw: '第六章 第六節 助理 Assistant vtuber open-llm-vtuber Open_llm_Llama-Gemma chatbot ai-avatar live2d jarvis assistant 虛擬人 語音助理 鋼鐵人 配音',
     a: 'Open-LLM-vTuber為開源的LLM 語音模擬工具。可整合llama.cpp server及Gemma-4 (E2B-it)模型，支援Live2D角色驅動及多媒體播放功能；其餘請參閱教材第六章。' },
   { q: 'Gemma-4-VLA',      kw: '第七章 第七節 VLA VLM agent gemma-4 vision-vla robot 機器人 動作控制',
-    a: '採用 Google GemmaVA 多模態 Agent模型，結合本地STT(Parakeet)及語音系統(Kokoro TTS)，並透過llama.cpp Server部署本機LLM服務；完整流程請參閱教材第七章。' }
+    a: '採用 Google Gemma-4 多模態模型，結合本地STT(Parakeet)及語音系統(Kokoro TTS)，並透過llama.cpp Server部署本機LLM服務；完整流程請參閱教材第七章。' }
 ];
