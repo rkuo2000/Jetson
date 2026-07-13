@@ -283,10 +283,6 @@ edge-tts --version
 **國立台灣海洋大學電機工程系簡介** : `https://ee.ntou.edu.tw/p/412-1062-7466.php?Lang=zh-tw`<br>
 
 ---
-### [Hermes + JARVIS（鋼鐵人助理）](https://github.com/eadmin2/jarvis_ai)
-![](https://github.com/rkuo2000/Jetson/blob/main/assets/Hermes_JARVIS.png?raw=true)
-
----
 ### [AI虛擬人（Live2D 語音助理）](https://github.com/YuriCrystal/ai-avatar-bot)
 ![](https://github.com/rkuo2000/Jetson/blob/main/assets/AI_Avatar.png?raw=true)
 
