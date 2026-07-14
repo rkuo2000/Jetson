@@ -100,7 +100,7 @@ apt install espeak-ng
 ```
 
 ```
-kokoro -t "Nice to meet you" -o output.mp3 --voice "al_heart"
+kokoro -t "Nice to meet you" -o output.mp3 --voice "af_heart"
 ```
 
 ---
