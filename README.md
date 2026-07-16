@@ -411,7 +411,7 @@ Take a photo from webcam and analyze it
 ![](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F33602339%2F6227624cde4a8fcec774ffb28add6a9f%2FGEM4.jpg?generation=1779067763846631&alt=media)
 ![](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F33602339%2F0ebdb094a641845b5f8c51aa28865610%2FVLA_archi.jpg?generation=1778807945930266&alt=media)
 
-<iframe width="999" height="562" src="https://www.youtube.com/embed/OhaIA3bYwmg" title="GEM-4: Gemma Embodied 4 Physical Assistance" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+![GEM-4: Gemma Embodied 4 Physical Assistance](https://www.youtube.com/watch?v=OhaIA3bYwmg)
 
 ---
 ## 8. [LeRobot 機器手臂](https://github.com/huggingface/lerobot)
