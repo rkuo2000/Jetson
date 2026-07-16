@@ -405,6 +405,15 @@ Take a photo from webcam and analyze it
 ![](https://github.com/rkuo2000/Jetson/blob/main/assets/llama.cpp_server_processing_image.png?raw=true)
 
 ---
+### [GEM-4](https://www.kaggle.com/competitions/gemma-4-good-hackathon/writeups/new-writeup-1778618527713)
+
+#### Code: [https://github.com/takaki-maeda-99/GEM-4](https://github.com/takaki-maeda-99/GEM-4)
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F33602339%2F6227624cde4a8fcec774ffb28add6a9f%2FGEM4.jpg?generation=1779067763846631&alt=media)
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F33602339%2F0ebdb094a641845b5f8c51aa28865610%2FVLA_archi.jpg?generation=1778807945930266&alt=media)
+
+<iframe width="999" height="562" src="https://www.youtube.com/embed/OhaIA3bYwmg" title="GEM-4: Gemma Embodied 4 Physical Assistance" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+---
 ## 8. [LeRobot 機器手臂](https://github.com/huggingface/lerobot)
 
 ### [SO-ARM101 AI 機器手臂PRO套件](https://www.icshop.com.tw/products/368040500233)
@@ -495,10 +504,3 @@ uv tool install git+https://github.com/huggingface/leLab.git && lelab
 ![](https://cdn-uploads.huggingface.co/production/uploads/65563ac2b3bb6c3a41848a25/tArn-Nb0PJeQhMuGrHSiW.gif)
 
 ![](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/lerobot/lerobot-groot-paper1%20(1).png)
-
----
-### [GEM-4](https://www.kaggle.com/competitions/gemma-4-good-hackathon/writeups/new-writeup-1778618527713)
-
-#### Code: [https://github.com/takaki-maeda-99/GEM-4](https://github.com/takaki-maeda-99/GEM-4)
-![](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F33602339%2F6227624cde4a8fcec774ffb28add6a9f%2FGEM4.jpg?generation=1779067763846631&alt=media)
-![](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F33602339%2F0ebdb094a641845b5f8c51aa28865610%2FVLA_archi.jpg?generation=1778807945930266&alt=media)
