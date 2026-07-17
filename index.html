@@ -651,9 +651,10 @@ export TELEOP_ID=orange_teleop  # use this line as-is</code></pre>
 export ROBOT_ID=orange_robot  # use this line as-is</code></pre>
 
       <h4>Setup Motors</h4>
-      <pre><code>sudo chown usrname /dev/ttyACM2
+      <pre><code>sudo chown user_name /dev/ttyACM2
+sudo chown user_name /dev/ttyACM3
 lerobot-setup-motors --teleop.type=so101_leader --teleop.port=/dev/ttyACM2
-lerobot-setup-motors --robot.type=so101_follower --teleop.port=/dev/ttyACM2</code></pre>
+lerobot-setup-motors --robot.type=so101_follower --teleop.port=/dev/ttyACM3</code></pre>
 
       <h4>Calibration</h4>
       <img src="https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/_images/calibration_pose.jpg" style="max-width:50%;">
