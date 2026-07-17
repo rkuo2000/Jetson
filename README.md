@@ -451,8 +451,8 @@ lerobot-find-port
 ```
 
 ```
-setenv TELEOP_PORT=/dev/ttyACM2 # !! make sure to update
-setenv TELEOP_ID=orange_teleop  # use this line as-is
+export TELEOP_PORT=/dev/ttyACM2 # !! make sure to update
+export TELEOP_ID=orange_teleop  # use this line as-is
 ```
 
 ---
@@ -462,8 +462,8 @@ lerobot-find-port
 ```
 
 ```
-setenv ROBOT_PORT=/dev/ttyACM3 # !! make sure to update
-setenv ROBOT_ID=orange_teleop  # use this line as-is
+export ROBOT_PORT=/dev/ttyACM3 # !! make sure to update
+export ROBOT_ID=orange_teleop  # use this line as-is
 ```
 
 #### Setup Motors
