@@ -642,13 +642,13 @@ cd Sim-to-Real-SO-101-Workshop</code></pre>
 
       <h4>Identify the Teleop ARM Port</h4>
       <code>lerobot-find-port</code>
-      <pre><code>setenv TELEOP_PORT=/dev/ttyACM2 # !! make sure to update
-setenv TELEOP_ID=orange_teleop  # use this line as-is</code></pre>
+      <pre><code>export TELEOP_PORT=/dev/ttyACM2 # !! make sure to update
+export TELEOP_ID=orange_teleop  # use this line as-is</code></pre>
 
       <h4>Identify the Robot ARM Port</h4>
       <code>lerobot-find-port</code>
-      <pre><code>setenv ROBOT_PORT=/dev/ttyACM3 # !! make sure to update
-setenv ROBOT_ID=orange_teleop  # use this line as-is</code></pre>
+      <pre><code>export ROBOT_PORT=/dev/ttyACM3 # !! make sure to update
+export ROBOT_ID=orange_teleop  # use this line as-is</code></pre>
 
       <h4>Setup Motors</h4>
       <pre><code>sudo chown usrname /dev/ttyACM2
