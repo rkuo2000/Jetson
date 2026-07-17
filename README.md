@@ -468,9 +468,10 @@ export ROBOT_ID=orange_robot  # use this line as-is
 
 #### Setup Motors
 ```
-sudo chown user_id /dev/ttyACM2
+sudo chown user_name /dev/ttyACM2
+sudo chown user_name /dev/ttyACM3
 lerobot-setup-motors --teleop.type=so101_leader --teleop.port=/dev/ttyACM2
-lerobot-setup-motors --robot.type=so101_follower --teleop.port=/dev/ttyACM2
+lerobot-setup-motors --robot.type=so101_follower --teleop.port=/dev/ttyACM3
 ```
 
 #### Calibration
