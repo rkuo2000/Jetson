@@ -463,7 +463,7 @@ lerobot-find-port
 
 ```
 export ROBOT_PORT=/dev/ttyACM3 # !! make sure to update
-export ROBOT_ID=orange_teleop  # use this line as-is
+export ROBOT_ID=orange_robot  # use this line as-is
 ```
 
 #### Setup Motors
