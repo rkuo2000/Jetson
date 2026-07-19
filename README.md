@@ -505,5 +505,3 @@ uv tool install git+https://github.com/huggingface/leLab.git && lelab
 ---
 ### [GR00T1.7 OpenVLA for LeRobot](https://huggingface.co/blog/nvidia/nvidia-isaac-teleop-and-gr00t17-in-lerobot)
 ![](https://cdn-uploads.huggingface.co/production/uploads/65563ac2b3bb6c3a41848a25/tArn-Nb0PJeQhMuGrHSiW.gif)
-
-![](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/lerobot/lerobot-groot-paper1%20(1).png)
