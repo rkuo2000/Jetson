@@ -436,14 +436,11 @@ GEM-4: Gemma Embodied 4 Physical Assistance <br>
 | 控制方法     | PC                                                             |
 
 ---
-### [Train SO101 Robot Sim-to-Real](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/05-building-workspace.html)
-
+### [leRobot](https://github.com/huggingface/lerobot)
 ```
 pip install lerobot
-
-git clone https://github.com/isaac-sim/Sim-to-Real-SO-101-Workshop.git
-cd Sim-to-Real-SO-101-Workshop
 ```
+
 ---
 #### Identify the Teleop ARM Port
 ```
@@ -500,6 +497,10 @@ LeLab is a web app that puts the full LeRobot workflow — calibrate, teleoperat
 ```
 uv tool install git+https://github.com/huggingface/leLab.git && lelab
 ```
+
+---
+### [Train SO101 Robot Sim-to-Real](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/05-building-workspace.html)
+24GB VRAM required <br>
 
 ---
 ### [GR00T1.7 OpenVLA for LeRobot](https://huggingface.co/blog/nvidia/nvidia-isaac-teleop-and-gr00t17-in-lerobot)
