@@ -520,6 +520,10 @@ lerobot-teleoperate \
 pip install opencv-python==4.10.0.84
 lerobot-find-cameras opencv
 ```
+```
+export CAMERA_WRIST=0
+export CAMERA_FRONT=2
+```
 
 #### Teleoperate with cameras
 ```
@@ -532,8 +536,8 @@ lerobot-teleoperate \
   --teleop.id=$TELEOP_ID \
   --display_data=true \
   --robot.cameras='{
-    "wrist": { "type": "opencv", "index_or_path": '"$CAMERA_GRIPPER"', "width": 640, "height": 480, "fps": 30, "rotation": "ROTATE_90_CLOCKWISE"},
-    "front": { "type": "opencv", "index_or_path": '"$CAMERA_EXTERNAL"', "width": 640, "height": 480, "fps": 30 } }'
+    "wrist": { "type": "opencv", "index_or_path": '"$CAMERA_WRIST"', "width": 640, "height": 480, "fps": 30, "rotation": "ROTATE_90_CLOCKWISE"},
+    "front": { "type": "opencv", "index_or_path": '"$CAMERA_FRONT"', "width": 640, "height": 480, "fps": 30 } }'
 ```
 
 ---
