@@ -528,16 +528,15 @@ export CAMERA_FRONT=2
 #### Teleoperate with cameras
 ```
 lerobot-teleoperate \
-  --robot.type=so101_follower \
-  --robot.port=$ROBOT_PORT \
-  --robot.id=$ROBOT_ID \
-  --teleop.type=so101_leader \
-  --teleop.port=$TELEOP_PORT \
-  --teleop.id=$TELEOP_ID \
-  --display_data=true \
-  --robot.cameras='{
-    "wrist": { "type": "opencv", "index_or_path": '"$CAMERA_WRIST"', "width": 640, "height": 480, "fps": 30, "rotation": "ROTATE_90_CLOCKWISE"},
-    "front": { "type": "opencv", "index_or_path": '"$CAMERA_FRONT"', "width": 640, "height": 480, "fps": 30 } }'
+    --robot.type=so101_follower \
+    --robot.port=$ROBOT_PORT \
+    --robot.id=$ROBOT_ID \
+    --robot.cameras="{wrist: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30} ,  \
+                      front: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30} }" \
+    --teleop.type=so101_leader \
+    --teleop.port=$TELEOP_PORT \
+    --teleop.id=$TELEOP_ID \
+    --display_data=true
 ```
 
 ---
@@ -547,15 +546,19 @@ lerobot-record \
     --robot.type=so101_follower \
     --robot.port=$ROBOT_PORT \
     --robot.id=$ROBOT_ID \
-    --robot.cameras="{ top: {type: opencv, index_or_path: 1, width: 640, height: 480, fps: 30}, wrist: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30} }" \
+    --robot.cameras="{wrist: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30},   \
+                      front: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30} }" \
     --teleop.type=so101_leader \
     --teleop.port=$TELEOP_PORT \
     --teleop.id=$TELEOP_ID \
-    --dataset.repo_id=${HF_USER}/so101_dataset_test \
-    --dataset.num_episodes=30 \
-    --dataset.single_task="put the red brick in a bowl" \
-    --dataset.streaming_encoding=true \
-    --display_data=true
+    --display_data=true \
+    --dataset.repo_id=${HF_USER}/SO101-ACT-test \
+    --dataset.push_to_hub=False \
+    --dataset.num_episodes=5 \
+    --dataset.single_task="Pick up a pen" \
+    --dataset.episode_time_s=60 \
+    --dataset.reset_time_s=5 \
+##  --resume.true \
 ```
 
 ---
@@ -565,9 +568,8 @@ LeLab is a web app that puts the full LeRobot workflow — calibrate, teleoperat
 uv tool install git+https://github.com/huggingface/leLab.git && lelab
 ```
 
----
-### [Train Action Chunking Transformer (ACT) on SO-101](https://huggingface.co/blog/sherryxychen/train-act-on-so-101)
-<img width="50%" src="https://cdn-uploads.huggingface.co/production/uploads/6885612c3bd4744a179e1f7f/PmyXORGA_nXPNfn5MVpYe.png">
+#### Train an ACT Policy for the SO-101 Robot with LeRobot
+[![](https://markdown-videos-api.jorgenkh.no/youtube/-tkEMLOLEwo)](https://youtu.be/-tkEMLOLEwo)
 
 ---
 ### [Train SO101 Robot Sim-to-Real](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/05-building-workspace.html)
