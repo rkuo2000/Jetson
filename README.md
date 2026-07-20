@@ -166,7 +166,7 @@ sudo docker run -it --rm --pull always --runtime=nvidia --network host -v $HOME/
 ---
 ## 5. Agent 開發平台之安裝與操作
 
-### OpenCode setup
+### [OpenCode setup](https://github.com/rkuo2000/AgenticCoding/blob/main/OpenCode.md)
 ```
 npm install -g opencode-ai@latest
 opencode -v
