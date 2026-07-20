@@ -440,8 +440,13 @@ GEM-4: Gemma Embodied 4 Physical Assistance <br>
 ```
 git clone https://github.com/huggingface/lerobot
 cd lerobot
-
+```
+```
 python -m venv .venv
+source .venv/bin/activate
+```
+
+```
 pip install -e ".[all]"
 ```
 or 
