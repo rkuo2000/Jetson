@@ -436,8 +436,11 @@ GEM-4: Gemma Embodied 4 Physical Assistance <br>
 | 控制方法     | PC                                                             |
 
 ---
-### [leRobot](https://github.com/huggingface/lerobot)
+### [leRobot](https://huggingface.co/docs/lerobot/en/installation)
 ```
+git clone https://github.com/huggingface/lerobot
+cd lerobot
+
 pip install lerobot
 ```
 
@@ -490,6 +493,56 @@ lerobot-calibrate \
 The calibration file will then be saved in the ~/.cache/huggingface/lerobot/calibration directory<br>
 
 ![](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/_images/full_so101_calibration.gif)
+
+---
+#### Teleoperate
+```
+lerobot-teleoperate \
+    --robot.type=so101_follower \
+    --robot.port=/dev/tty.usbmodem58760431541 \
+    --robot.id=my_awesome_follower_arm \
+    --teleop.type=so101_leader \
+    --teleop.port=/dev/tty.usbmodem58760431551 \
+    --teleop.id=my_awesome_leader_arm
+```
+
+#### Finding available Camera
+```
+lerobot-find-cameras opencv
+```
+
+#### Teleoperate with cameras
+```
+lerobot-teleoperate \
+  --robot.type=so101_follower \
+  --robot.port=$ROBOT_PORT \
+  --robot.id=$ROBOT_ID \
+  --teleop.type=so101_leader \
+  --teleop.port=$TELEOP_PORT \
+  --teleop.id=$TELEOP_ID \
+  --display_data=true \
+  --robot.cameras='{
+    "wrist": { "type": "opencv", "index_or_path": '"$CAMERA_GRIPPER"', "width": 640, "height": 480, "fps": 30 },
+    "front": { "type": "opencv", "index_or_path": '"$CAMERA_EXTERNAL"', "width": 640, "height": 480, "fps": 30 } }'
+```
+
+---
+#### Record a dataset
+```
+lerobot-record \
+    --robot.type=so101_follower \
+    --robot.port=$ROBOT_PORT \
+    --robot.id=$ROBOT_ID \
+    --robot.cameras="{ top: {type: opencv, index_or_path: 1, width: 640, height: 480, fps: 30}, wrist: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30} }" \
+    --teleop.type=so101_leader \
+    --teleop.port=$TELEOP_PORT \
+    --teleop.id=$TELEOP_ID \
+    --dataset.repo_id=${HF_USER}/so101_dataset_test \
+    --dataset.num_episodes=30 \
+    --dataset.single_task="put the red brick in a bowl" \
+    --dataset.streaming_encoding=true \
+    --display_data=true
+```
 
 ---
 #### LeLab (Web app)
