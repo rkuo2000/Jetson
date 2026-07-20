@@ -449,33 +449,32 @@ or
 pip install 'lerobot[all]'
 ```
 
-#### Find Port & Cameras
+#### Find Port & Setup Motors
 ```
 lerobot-find-port
-```
-```
-lerobot-find-cameras
+
+sudo chown usrname /dev/ttyACM2
+lerobot-setup-motors --teleop.type=so101_leader --teleop.port=/dev/ttyACM0
 ```
 
-#### Setup Motors
 ```
-sudo chown usrname /dev/ttyACM0
-sudo chown usrname /dev/ttyACM1
-lerobot-setup-motors --teleop.type=so101_leader --teleop.port=/dev/ttyACM0
-lerobot-setup-motors --robot.type=so101_follower --robot.port=/dev/ttyACM1
+lerobot-find-port
+
+sudo chown usrname /dev/ttyACM3
+lerobot-setup-motors --robot.type=so101_follower --robot.port=/dev/ttyACM3
 ```
 
 ---
 #### Identify the Teleop ARM Port
 ```
-export TELEOP_PORT=/dev/ttyACM0 # !! make sure to update
-export TELEOP_ID=my_leader_arm  # use this line as-is
+export TELEOP_PORT=/dev/ttyACM2
+export TELEOP_ID=my_leader_arm
 ```
 
 #### Identify the Robot ARM Port
 ```
-export ROBOT_PORT=/dev/ttyACM1 # !! make sure to update
-export ROBOT_ID=my_follower_arm  # use this line as-is
+export ROBOT_PORT=/dev/ttyACM3
+export ROBOT_ID=my_follower_arm
 ```
 
 ---
