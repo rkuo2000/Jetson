@@ -444,6 +444,14 @@ cd lerobot
 pip install lerobot
 ```
 
+#### Setup Motors
+```
+sudo chown user_name /dev/ttyACM2
+sudo chown user_name /dev/ttyACM3
+lerobot-setup-motors --teleop.type=so101_leader --teleop.port=/dev/ttyACM2
+lerobot-setup-motors --robot.type=so101_follower --teleop.port=/dev/ttyACM3
+```
+
 ---
 #### Identify the Teleop ARM Port
 ```
@@ -452,7 +460,7 @@ lerobot-find-port
 
 ```
 export TELEOP_PORT=/dev/ttyACM2 # !! make sure to update
-export TELEOP_ID=orange_teleop  # use this line as-is
+export TELEOP_ID=my_leader_arm  # use this line as-is
 ```
 
 ---
@@ -463,17 +471,10 @@ lerobot-find-port
 
 ```
 export ROBOT_PORT=/dev/ttyACM3 # !! make sure to update
-export ROBOT_ID=orange_robot  # use this line as-is
+export ROBOT_ID=my_follower_arm  # use this line as-is
 ```
 
-#### Setup Motors
-```
-sudo chown user_name /dev/ttyACM2
-sudo chown user_name /dev/ttyACM3
-lerobot-setup-motors --teleop.type=so101_leader --teleop.port=/dev/ttyACM2
-lerobot-setup-motors --robot.type=so101_follower --teleop.port=/dev/ttyACM3
-```
-
+---
 #### Calibration
 <img width="50%" src="https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/_images/calibration_pose.jpg">
 
@@ -499,11 +500,11 @@ The calibration file will then be saved in the ~/.cache/huggingface/lerobot/cali
 ```
 lerobot-teleoperate \
     --robot.type=so101_follower \
-    --robot.port=/dev/tty.usbmodem58760431541 \
-    --robot.id=my_awesome_follower_arm \
+    --robot.port=$ROBOT_PORT \
+    --robot.id=$ROBOT_ID \
     --teleop.type=so101_leader \
-    --teleop.port=/dev/tty.usbmodem58760431551 \
-    --teleop.id=my_awesome_leader_arm
+    --teleop.port=$TELEOP_PORT \
+    --teleop.id=$TELEOP_ID
 ```
 
 #### Finding available Camera
@@ -522,7 +523,7 @@ lerobot-teleoperate \
   --teleop.id=$TELEOP_ID \
   --display_data=true \
   --robot.cameras='{
-    "wrist": { "type": "opencv", "index_or_path": '"$CAMERA_GRIPPER"', "width": 640, "height": 480, "fps": 30 },
+    "wrist": { "type": "opencv", "index_or_path": '"$CAMERA_GRIPPER"', "width": 640, "height": 480, "fps": 30, "rotation": "ROTATE_90_CLOCKWISE"},
     "front": { "type": "opencv", "index_or_path": '"$CAMERA_EXTERNAL"', "width": 640, "height": 480, "fps": 30 } }'
 ```
 
