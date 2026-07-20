@@ -568,6 +568,7 @@ LeLab is a web app that puts the full LeRobot workflow — calibrate, teleoperat
 uv tool install git+https://github.com/huggingface/leLab.git && lelab
 ```
 
+---
 #### Train an ACT Policy for the SO-101 Robot with LeRobot
 [![](https://markdown-videos-api.jorgenkh.no/youtube/-tkEMLOLEwo)](https://youtu.be/-tkEMLOLEwo)
 
