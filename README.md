@@ -517,6 +517,7 @@ lerobot-teleoperate \
 
 #### Finding available Camera
 ```
+pip install opencv-python==4.10.0.84
 lerobot-find-cameras opencv
 ```
 
