@@ -441,36 +441,40 @@ GEM-4: Gemma Embodied 4 Physical Assistance <br>
 git clone https://github.com/huggingface/lerobot
 cd lerobot
 
-pip install lerobot
+python -m venv .venv
+pip install -e ".[all]"
+```
+or 
+```
+pip install 'lerobot[all]'
+```
+
+#### Find Port & Cameras
+```
+lerobot-find-port
+```
+```
+lerobot-find-cameras
 ```
 
 #### Setup Motors
 ```
-sudo chown user_name /dev/ttyACM2
-sudo chown user_name /dev/ttyACM3
-lerobot-setup-motors --teleop.type=so101_leader --teleop.port=/dev/ttyACM2
-lerobot-setup-motors --robot.type=so101_follower --teleop.port=/dev/ttyACM3
+sudo chown usrname /dev/ttyACM0
+sudo chown usrname /dev/ttyACM1
+lerobot-setup-motors --teleop.type=so101_leader --teleop.port=/dev/ttyACM0
+lerobot-setup-motors --robot.type=so101_follower --robot.port=/dev/ttyACM1
 ```
 
 ---
 #### Identify the Teleop ARM Port
 ```
-lerobot-find-port
-```
-
-```
-export TELEOP_PORT=/dev/ttyACM2 # !! make sure to update
+export TELEOP_PORT=/dev/ttyACM0 # !! make sure to update
 export TELEOP_ID=my_leader_arm  # use this line as-is
 ```
 
----
 #### Identify the Robot ARM Port
 ```
-lerobot-find-port
-```
-
-```
-export ROBOT_PORT=/dev/ttyACM3 # !! make sure to update
+export ROBOT_PORT=/dev/ttyACM1 # !! make sure to update
 export ROBOT_ID=my_follower_arm  # use this line as-is
 ```
 
