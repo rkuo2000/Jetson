@@ -553,7 +553,7 @@ uv tool install git+https://github.com/huggingface/leLab.git && lelab
 
 ---
 ### [Train Action Chunking Transformer (ACT) on SO-101](https://huggingface.co/blog/sherryxychen/train-act-on-so-101)
-![](https://cdn-uploads.huggingface.co/production/uploads/6885612c3bd4744a179e1f7f/PmyXORGA_nXPNfn5MVpYe.png)
+<img width="50%" src="https://cdn-uploads.huggingface.co/production/uploads/6885612c3bd4744a179e1f7f/PmyXORGA_nXPNfn5MVpYe.png">
 
 ---
 ### [Train SO101 Robot Sim-to-Real](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/05-building-workspace.html)
