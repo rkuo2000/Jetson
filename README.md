@@ -459,7 +459,7 @@ pip install 'lerobot[all]'
 lerobot-find-port
 
 sudo chown usrname /dev/ttyACM2
-lerobot-setup-motors --teleop.type=so101_leader --teleop.port=/dev/ttyACM0
+lerobot-setup-motors --teleop.type=so101_leader --teleop.port=/dev/ttyACM2
 ```
 
 ```
